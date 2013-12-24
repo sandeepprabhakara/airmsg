@@ -1,0 +1,15 @@
+<% @user ||= current_user %>
+<div class="stats">
+  <a href="<%= responders_user_path(@user) %>">
+    <strong id="responders" class="stat">
+      <%= @user.responder_users.count %>
+    </strong>
+    responders
+  </a>
+  <a href="<%= initiators_user_path(@user) %>">
+    <strong id="initiators" class="stat">
+      <%= @user.initiators.count %>
+    </strong>
+    initiators
+  </a>
+</div>

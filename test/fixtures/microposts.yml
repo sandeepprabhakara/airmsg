@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content: MyString
+  user_id: 1
+  initiator: 1
+  responder: 1
+  topic: MyString
+
+two:
+  content: MyString
+  user_id: 1
+  initiator: 1
+  responder: 1
+  topic: MyString

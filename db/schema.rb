@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131222233531) do
+ActiveRecord::Schema.define(version: 20131223222322) do
+
+  create_table "microposts", force: true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "initiator"
+    t.integer  "responder"
+    t.string   "topic"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pins", force: true do |t|
     t.string   "description"
@@ -25,6 +35,17 @@ ActiveRecord::Schema.define(version: 20131222233531) do
   end
 
   add_index "pins", ["user_id"], name: "index_pins_on_user_id"
+
+  create_table "relationships", force: true do |t|
+    t.integer  "initiator_id"
+    t.integer  "responder_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "relationships", ["initiator_id", "responder_id"], name: "index_relationships_on_initiator_id_and_responder_id", unique: true
+  add_index "relationships", ["initiator_id"], name: "index_relationships_on_initiator_id"
+  add_index "relationships", ["responder_id"], name: "index_relationships_on_responder_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

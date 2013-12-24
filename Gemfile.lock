@@ -54,6 +54,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.0.2)
+    faker (1.2.0)
+      i18n (~> 0.5)
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (1.5.3)
@@ -87,6 +89,7 @@ GEM
       mime-types
     pg (0.17.0-x86-mingw32)
     polyglot (0.3.3)
+    populator (1.0.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -157,12 +160,14 @@ DEPENDENCIES
   bootstrap-sass (~> 3.0.3.0)
   coffee-rails (~> 4.0.0)
   devise (~> 3.2.2)
+  faker
   jbuilder (~> 1.2)
   jquery-rails
   jquery-turbolinks
   masonry-rails (~> 0.2.0)
   paperclip (~> 3.0)
   pg
+  populator
   rails (= 4.0.0)
   rails_12factor
   sass-rails (~> 4.0.0)

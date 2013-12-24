@@ -1,5 +1,14 @@
 Pinteresting::Application.routes.draw do
+  resources :microposts
+
   resources :pins
+
+  resources :users do
+    member do
+      get :responders, :initiators
+    end
+  end
+
 
   devise_for :users
   root "pins#index"
