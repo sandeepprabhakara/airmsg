@@ -1,15 +1,19 @@
 class MicropostsController < ApplicationController
   before_action :set_micropost, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :destroy]
 
   # GET /microposts
   # GET /microposts.json
   def index
-    @microposts = Micropost.all
+    @microposts = Micropost.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
+    @micropost = current_user.microposts.build if signed_in?
   end
 
   # GET /microposts/1
   # GET /microposts/1.json
   def show
+    #@user = User.find(params[:id])
+    #@microposts = @user.microposts.paginate(page: params[:page])
   end
 
   # GET /microposts/new
@@ -28,8 +32,10 @@ class MicropostsController < ApplicationController
 
     respond_to do |format|
       if @micropost.save
-        format.html { redirect_to @micropost, notice: 'Micropost was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Micropost was successfully created.' }
         format.json { render action: 'show', status: :created, location: @micropost }
+        #flash[:success] = "Micropost created!"
+        #redirect_to root_url
       else
         format.html { render action: 'new' }
         format.json { render json: @micropost.errors, status: :unprocessable_entity }
@@ -71,4 +77,6 @@ class MicropostsController < ApplicationController
     def micropost_params
       params.require(:micropost).permit(:content, :user_id, :initiator, :responder, :topic)
     end
+
+    
 end

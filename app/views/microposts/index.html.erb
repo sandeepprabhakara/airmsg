@@ -1,3 +1,45 @@
+<%= render 'pages/stats' if user_signed_in? %>
+
+<% if signed_in? %>
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <%= render 'user_info' %>
+      </section>
+      <section>
+        <%= render 'micropost_form' %>
+      </section>
+    </aside>
+  </div>
+
+<% else %>
+  <div class="jumbotron center /*hero-unit*/">
+    <h1>Welcome to the Air Messaging</h1>
+
+    <h2>
+      This is the home page for the <a href="#">Air Message</a> sample application.
+    </h2>
+    <%= link_to "Login", new_user_session_path, class: "btn btn-default btn-lg" %>
+    <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-default btn-lg" %>
+  </div>
+
+  <% #= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+<% end %>
+
+
+
+<% if user_signed_in? %>
+  <% provide(:title, @user.name) %>
+  <div class="span8">
+    <% if @user.microposts.any? %>
+      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <ol class="microposts">
+        <%= render @microposts %>
+      </ol>
+      <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+    <% end %>
+  </div>
+  <% end %>
 <h1>Listing microposts</h1>
 
 <table>
@@ -32,4 +74,6 @@
 
 <br>
 
-<%= link_to 'New Micropost', new_micropost_path %>
+<% if user_signed_in? %>
+  <%= link_to 'New Micropost', new_micropost_path %>
+<% end %>
