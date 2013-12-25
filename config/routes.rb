@@ -1,17 +1,34 @@
 Pinteresting::Application.routes.draw do
-  resources :microposts
+  resources :microposts do
+    member do
+      get :whoresponders, :whoinitiators
+    end
+  end
 
   resources :pins
 
   devise_for :users
   resources :users do
-    member do
-      get :responders, :initiators
+  member do
+      get :whoresponders, :whoinitiators
     end
   end
+  
+  # do
+  #member do
+  #    get :whoresponders, :whoinitiators
+  #  end
+  #end
+
+
+  #resources :sessions, only: [:new, :create, :destroy]
+  # => resources :microposts,    only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
+
 
   root "microposts#index"
   get "about" => "pages#about"
+  #get "users/:id/whoresponders" => "microposts#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

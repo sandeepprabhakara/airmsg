@@ -6,6 +6,7 @@
 /* microposts */
 
 $grayLight: #999;
+$blue: blue;
 
 .microposts {
   list-style: none;
@@ -33,5 +34,27 @@ aside {
   textarea {
     height: 100px;
     margin-bottom: 5px;
+  }
+}
+
+.stats {
+  overflow: auto;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $grayLight;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    
+    &:hover {
+      text-decoration: none;
+      color: $blue;
+    }
+  }
+  strong {
+    display: block;
   }
 }

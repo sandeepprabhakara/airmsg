@@ -5,8 +5,15 @@ class MicropostsController < ApplicationController
   # GET /microposts
   # GET /microposts.json
   def index
+    #@microposts = Micropost.where("user_id = ?", id)
+    #@user = User.find(params[:id])
+    #@microposts = @user.microposts.paginate(:page => params[:page], :per_page => 5)
     @microposts = Micropost.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
-    @micropost = current_user.microposts.build if signed_in?
+    if signed_in?
+      @micropost = current_user.microposts.build if signed_in?
+      @feed_items = current_user.feed.paginate(page: params[:page])
+    end
+
   end
 
   # GET /microposts/1
@@ -37,8 +44,9 @@ class MicropostsController < ApplicationController
         #flash[:success] = "Micropost created!"
         #redirect_to root_url
       else
-        format.html { render action: 'new' }
+        format.html { render action: root_url }
         format.json { render json: @micropost.errors, status: :unprocessable_entity }
+        @feed_items = []
       end
     end
   end
@@ -66,6 +74,24 @@ class MicropostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def whoresponders
+    @title = "Responders"
+    @user = User.find(params[:id])
+    @users = @user.responder_users.paginate(page: params[:page])
+    #@users = @user.responders.paginate(page: params[:page])
+    render 'show_communicate'
+  end
+
+  def whoinitiators
+    @title = "Initiators"
+    @user = User.find(params[:id])
+    @users = @user.initiators.paginate(page: params[:page])
+    render 'show_communicate'
+  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
