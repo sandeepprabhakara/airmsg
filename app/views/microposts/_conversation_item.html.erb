@@ -1,0 +1,10 @@
+<li id="<%= conversation_item.id %>">
+  <%#= link_to gravatar_for(feed_item.user), feed_item.user %>
+  <span class="user">
+    <%= link_to conversation_item.user.name, conversation_item.user %>
+  </span>
+  <span class="content"><%= conversation_item.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(conversation_item.created_at) %> ago.
+  </span>
+</li>

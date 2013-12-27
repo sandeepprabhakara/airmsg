@@ -23,6 +23,10 @@
 
 <%# Added by me %>
 <section>
+  <%= render 'conversation', :users => @user %>
+</section>
+
+<section>
   <%= render 'responder_micropost', :microposts => @micropost %>
 </section>
 

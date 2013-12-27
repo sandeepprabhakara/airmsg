@@ -15,7 +15,14 @@ class User < ActiveRecord::Base
 
   def feed
     #Micropost.where("user_id = ?", id)
-    Micropost.from_users_responded_by(self)
+    Micropost.from_users_responded_by(self).order("created_at DESC")
+  end
+
+  # I added this. May need to delete
+  def conversation(other_user)
+    #Micropost.from_certain_user(self).order("created_at DESC")
+    #Micropost.from_certain_user(self)
+    Micropost.where("user_id = ? OR user_id = ?", other_user.id, id)
   end
 
   def communicating?(other_user)

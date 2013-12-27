@@ -32,10 +32,7 @@ class MicropostsController < ApplicationController
   def edit
   end
 
-  def home
-    @micropost = current_user.microposts.build if signed_in?
-  end
-
+ 
   # POST /microposts
   # POST /microposts.json
   def create

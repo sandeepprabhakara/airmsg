@@ -12,6 +12,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    #@conversation_items = current_user.conversation.paginate(page: params[:page])
+    #@conversation_items = current_user.conversation
+    @conversation_items = @user.conversation(current_user)
+    #@conversation_items = conversation(current_user, @user)
   end
 
   def user_micropost
