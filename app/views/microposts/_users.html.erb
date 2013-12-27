@@ -1,10 +1,10 @@
 <h1>
-<div class="user_avatars">
+<div class="user">
   <% @users.each do |user| %>
     <%#= can add a link_to here to take it to the user's profile. Need to figure out how to get a user's profile with devise %>
 
     <%#= user.name %>
-    <%= link_to user.name, User %> </br>
+    <h3><%= link_to user.name, user %> </br></h3>
   <% end %>
 </div>
 </h1>

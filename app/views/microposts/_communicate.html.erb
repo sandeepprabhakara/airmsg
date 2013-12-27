@@ -1,4 +1,4 @@
 <%= form_for(current_user.relationships.build(responder_id: @user.id)) do |f| %>
   <div><%= f.hidden_field :responder_id %></div>
   <%= f.submit "communicate", class: "btn btn-large btn-primary" %>
-<% end %>c
+<% end %>

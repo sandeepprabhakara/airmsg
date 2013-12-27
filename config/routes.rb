@@ -1,9 +1,5 @@
 Pinteresting::Application.routes.draw do
-  resources :microposts do
-    member do
-      get :whoresponders, :whoinitiators
-    end
-  end
+  resources :microposts
 
   resources :pins
 
@@ -13,13 +9,13 @@ Pinteresting::Application.routes.draw do
       get :whoresponders, :whoinitiators
     end
   end
-  
+
   # do
   #member do
   #    get :whoresponders, :whoinitiators
   #  end
   #end
-
+  #get 'users/:id' => 'users#show'
 
   #resources :sessions, only: [:new, :create, :destroy]
   # => resources :microposts,    only: [:create, :destroy]

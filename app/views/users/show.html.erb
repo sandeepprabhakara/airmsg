@@ -1,0 +1,32 @@
+<%# This code is very preliminary. Need to put the code to show user profile when a user click on a user's name %>
+
+<%= link_to 'Back', root_path %>
+
+<div class="row">
+	<div class="col-md-offset-2 col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading center">
+				<%#= image_tag @pin.image.url(:medium) %>	
+			</div>
+			<div class="panel-body">
+				<p><%#= @pin.description %></p>
+				<p><strong><%= @user.name %></strong></p>
+					<% if @user == current_user %>
+						<%= link_to edit_user_path(@pin) do %>
+            <span class="glyphicon glyphicon-edit"></span>Edit
+          <% end %>
+				<% end %> 
+			</div>
+		</div>
+	</div>
+</div>
+
+<%# Added by me %>
+<section>
+  <%= render 'responder_micropost', :microposts => @micropost %>
+</section>
+
+<div class="span8">
+  <%= render 'microposts/communicate_form' %>
+</div>
+

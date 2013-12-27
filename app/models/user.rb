@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   def feed
-    Micropost.where("user_id = ?", id)
+    #Micropost.where("user_id = ?", id)
+    Micropost.from_users_responded_by(self)
   end
 
   def communicating?(other_user)
@@ -27,23 +28,6 @@ class User < ActiveRecord::Base
 
 	def uncommunicate!(other_user)
     relationships.find_by(responder_id: other_user.id).destroy!
-  end
-
-  def whoresponders
-    @title = "Responders"
-    @user = User.find(params[:id])
-    @users = @user.responder_users.paginate(page: params[:page])
-    render '@users'
-    @users.name
-    #@users = @user.responders.paginate(page: params[:page])
-    render 'show_communicate'
-  end
-
-  def whoinitiators
-    @title = "Initiators"
-    @user = User.find(params[:id])
-    @users = @user.initiators.paginate(page: params[:page])
-    render 'show_communicate'
   end
 
 end

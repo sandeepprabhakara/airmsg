@@ -32,6 +32,10 @@ class MicropostsController < ApplicationController
   def edit
   end
 
+  def home
+    @micropost = current_user.microposts.build if signed_in?
+  end
+
   # POST /microposts
   # POST /microposts.json
   def create
@@ -74,23 +78,6 @@ class MicropostsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-
-  def whoresponders
-    @title = "Responders"
-    @user = User.find(params[:id])
-    @users = @user.responder_users.paginate(page: params[:page])
-    #@users = @user.responders.paginate(page: params[:page])
-    render 'show_communicate'
-  end
-
-  def whoinitiators
-    @title = "Initiators"
-    @user = User.find(params[:id])
-    @users = @user.initiators.paginate(page: params[:page])
-    render 'show_communicate'
-  end
-
 
 
   private

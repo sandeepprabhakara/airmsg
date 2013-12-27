@@ -5,6 +5,31 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+
+  def home
+    if signed_in?
+      @micropost  = current_user.microposts.build
+      @feed_items = current_user.feed.paginate(page: params[:page])
+    end
+  end
+  
+
+  def whoresponders
+    @title = "Responders"
+    @user = User.find(params[:id])
+    @users = @user.responder_users.paginate(page: params[:page])
+    #@users = @user.responders.paginate(page: params[:page])
+    render 'microposts/show_communicate'
+  end
+
+  def whoinitiators
+    @title = "Initiators"
+    @user = User.find(params[:id])
+    @users = @user.initiators.paginate(page: params[:page])
+    render 'microposts/show_communicate'
+  end
+
+
   protected
 
   def configure_permitted_parameters

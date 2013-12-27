@@ -1,0 +1,13 @@
+<%#= form_for(@user, :url => url_for(:controller => 'microposts', :action => 'new')) do |f| %>
+<%#= form_for(Micropost.new) do |f| %>
+
+<%= form_for(current_user.microposts.build(user_id: @user.id)) do |f| %>
+	<div><%= f.hidden_field :user_id %></div>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Write to this user..." %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>
+
+<%#= form_for(current_user.relationships.build(responder_id: @user.id)) do |f| %>
+  <div><%#= f.hidden_field :responder_id %></div>

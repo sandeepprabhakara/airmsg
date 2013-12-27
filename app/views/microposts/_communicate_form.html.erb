@@ -1,9 +1,9 @@
 <% unless current_user?(@user) %>
   <div id="communicate_form">
-  <% if current_user.communicating?(@user) %>
-    <%= render 'uncommunicate' %>
-  <% else %>
-    <%= render 'communicate' %>
-  <% end %>
+	  <% if current_user.communicating?(@user) %>
+	    <%= render 'microposts/uncommunicate' %>
+	  <% else %>
+	    <%= render 'microposts/communicate' %>
+	  <% end %>
   </div>
 <% end %>
