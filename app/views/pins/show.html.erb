@@ -1,5 +1,5 @@
 <%= link_to 'Back', pins_path %>
-
+<%= @pin.responder.name %>
 
 <div class="row">
 	<div class="col-md-offset-2 col-md-8">
@@ -9,6 +9,12 @@
 			</div>
 			<div class="panel-body">
 				<p><%= @pin.description %></p>
+        <p><%= @pin.message1 %></p>
+        <p><%= @pin.message2 %></p>
+        <p><%= @pin.message3 %></p>
+        <p><%= @pin.message4 %></p>
+        <p><%= @pin.message5 %></p>
+        <p><%= @pin.message6 %></p>
 				<p><strong><%= @pin.user.name if @pin.user %></strong></p>
 				<% if @pin.user == current_user %>
 					<%= link_to edit_pin_path(@pin) do %>
@@ -20,3 +26,12 @@
 	</div>
 </div>
 
+<%# @conversation_items = @pin.initiator.conversation_list(@pin.initiator, @pin.responder) %>
+<%# This is to list out the conversation between users %>
+<section>
+  <%= render 'users/conversation', :collection => @conversation_items %>
+</section>
+
+<div class="span8">
+  <%#= render 'microposts/communicate_form' %>
+</div>

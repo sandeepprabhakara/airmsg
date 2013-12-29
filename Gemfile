@@ -19,9 +19,16 @@ gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem 'populator'
 gem 'faker'
+gem 'sunspot_rails'
+gem 'sunspot_solr'
 
 group :development, :test do
 	gem 'sqlite3'
+	#gem 'sunspot_solr'
+end
+
+group :development do
+	gem 'sunspot_solr'
 end
 
 group :production do

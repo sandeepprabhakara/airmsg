@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131223222322) do
+ActiveRecord::Schema.define(version: 20131229232517) do
 
   create_table "microposts", force: true do |t|
     t.string   "content"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 20131223222322) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "message1"
+    t.string   "message2"
+    t.string   "message3"
+    t.string   "message4"
+    t.string   "message5"
+    t.string   "message6"
+    t.integer  "initiator_id"
+    t.integer  "responder_id"
   end
 
   add_index "pins", ["user_id"], name: "index_pins_on_user_id"

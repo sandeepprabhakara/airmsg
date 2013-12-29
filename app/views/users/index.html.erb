@@ -16,14 +16,17 @@
 
 	  	<% if first_user.communicating?(second_user) and (first_user != second_user) %>
 	  		<% @conversation_items = first_user.conversation_list(first_user, second_user) %>
-	  		<% conv_item = Array.new(@conversation_items.count) { |i|  } %>
+	  		<% messages = Array.new(@conversation_items.count) { |i|  } %>
+	  		<%# messages = "" %>
+	  		<%#= messages.inspect %>
 	  		<% @conversation_items.each_with_index do |conversation_item, i| %>
-	  			<% conv_item[i] = conversation_item.content %>
-	  			<%#= conv_item.inspect %>
+	  			<%= messages[i] = conversation_item.content %>
+	  			<%#= messages.inspect %>
 	  			<%#= i == (@conversation_items.count-1) %>
 	  			<% if i == (@conversation_items.count-1) %>
 	  				<%# Pin.create(:description => conversation_item.content) %>
-	  				<% Pin.create(:description => conv_item[i]) %>
+	  				<%# Pin.create(:description => messages[i]) %>
+	  				<% Pin.create(:description => "desc1", :message1 => messages[0], :message2 => messages[1], :message3 => messages[2], :message4 => messages[3], :message5 => messages[4], :message6 => messages[5], :responder_id => first_user.id, :initiator_id => second_user.id) %>
 	  			<%end %>
 	  		<% end %>
 	  			<% if @conversation_items.any? %>

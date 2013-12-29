@@ -6,13 +6,20 @@ class PinsController < ApplicationController
   # GET /pins
   # GET /pins.json
   def index
-    @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
+    #@pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
+    @search = Pin.search do
+    fulltext params[:search]
+    #with(:published_at).less_than(Time.zone.now)
+    #with(:publish_month, params[:month]) if params[:month].present?
+  end
+    @pins = @search.results
+    #@conversation_items = @pin.initiator.conversation_list(@pin.initiator, @pin.responder)
   end
 
   # GET /pins/1
   # GET /pins/1.json
   def show
-
+    @conversation_items = @pin.initiator.conversation_list(@pin.initiator, @pin.responder).paginate(page: params[:page], :per_page => 10)
   end
 
   # GET /pins/new

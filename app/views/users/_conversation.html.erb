@@ -1,6 +1,6 @@
 <% if @conversation_items.any? %>
   <ol class="microposts">
-    <%= render partial: 'conversation_item', collection: @conversation_items %>
+    <%= render partial: 'users/conversation_item', collection: @conversation_items %>
   </ol>
   <%= will_paginate @conversation_items, renderer: BootstrapPagination::Rails %>
 <% end %>
