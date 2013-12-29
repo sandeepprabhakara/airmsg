@@ -25,6 +25,12 @@ class User < ActiveRecord::Base
     Micropost.where("user_id = ? OR user_id = ?", other_user.id, id)
   end
 
+  def conversation_list(first_user, second_user)
+    #Micropost.from_certain_user(self).order("created_at DESC")
+    #Micropost.from_certain_user(self)
+    Micropost.where("user_id = ? OR user_id = ?", first_user.id, second_user.id)
+  end
+
   def communicating?(other_user)
   	relationships.find_by(responder_id: other_user.id)
   end

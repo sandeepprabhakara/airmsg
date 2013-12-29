@@ -1,4 +1,3 @@
-<%= conversation_item.user 'a' %>
 <li id="<%= conversation_item.id %>">
   <%#= link_to gravatar_for(feed_item.user), feed_item.user %>
   <span class="user">
@@ -9,3 +8,4 @@
     Posted <%= time_ago_in_words(conversation_item.created_at) %> ago.
   </span>
 </li>
+<%# Pin.create(:description => conversation_item.content) %>

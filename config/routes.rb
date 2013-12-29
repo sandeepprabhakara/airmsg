@@ -6,7 +6,7 @@ Pinteresting::Application.routes.draw do
   devise_for :users
   resources :users do
   member do
-      get :whoresponders, :whoinitiators
+      get :whoresponders, :whoinitiators, :conversations
     end
   end
 

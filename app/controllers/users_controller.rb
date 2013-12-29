@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user#, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def home
   end
@@ -9,12 +9,15 @@ class UsersController < ApplicationController
 
 	def index
     #@users = User.all
+    #@users = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
+    #@users = User.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
+    @users = User.all.order("created_at DESC")
   end
 
   def show
     #@conversation_items = current_user.conversation.paginate(page: params[:page])
     #@conversation_items = current_user.conversation
-    @conversation_items = @user.conversation(current_user)
+    @conversation_items = @user.conversation(current_user).paginate(page: params[:page], :per_page => 10)
     #@conversation_items = conversation(current_user, @user)
   end
 

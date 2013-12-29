@@ -11,10 +11,12 @@ class MicropostsController < ApplicationController
     @microposts = Micropost.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
     if signed_in?
       @micropost = current_user.microposts.build if signed_in?
-      @feed_items = current_user.feed.paginate(page: params[:page])
+      @feed_items = current_user.feed.paginate(page: params[:page], :per_page => 10)
     end
 
   end
+
+
 
   # GET /microposts/1
   # GET /microposts/1.json
@@ -32,7 +34,7 @@ class MicropostsController < ApplicationController
   def edit
   end
 
- 
+
   # POST /microposts
   # POST /microposts.json
   def create
