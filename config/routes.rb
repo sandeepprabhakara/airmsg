@@ -3,7 +3,7 @@ Pinteresting::Application.routes.draw do
 
   resources :pins
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "users/registrations" }
   resources :users do
   member do
       get :whoresponders, :whoinitiators, :conversations
