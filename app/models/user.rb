@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :reverse_relationships, foreign_key: "responder_id", class_name: "Relationship", dependent: :destroy
   has_many :initiators, through: :reverse_relationships, source: :initiator
 
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "50x50>" }
 
   validates :name, presence: true
 

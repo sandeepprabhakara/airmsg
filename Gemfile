@@ -22,6 +22,8 @@ gem 'faker'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 
+
+
 group :development, :test do
 	gem 'sqlite3'
 	#gem 'sunspot_solr'
@@ -35,7 +37,6 @@ group :production do
 	gem 'pg'
 	gem 'rails_12factor'
 end
-
 
 
 group :doc do

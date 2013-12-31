@@ -1,8 +1,8 @@
-<%= render 'pages/stats' if user_signed_in? %>
+<% render 'pages/stats' if user_signed_in? %>
 
 <% if signed_in? %>
   <div class="row">
-    <aside class="span4">
+    <aside class="col-md-3">
       <section>
         <%= render 'user_info' %>
       </section>
@@ -10,15 +10,16 @@
         <%= render 'micropost_form' %>
       </section>
     </aside>
-
-    <div class="span8">
+    
+    <div class="col-md-1"></div>
+    <div class="col-md-8 good-border">
       <%= render 'feed' %>
     </div>
 
   </div>
 
-  <div class="span8">
-    <%= render 'communicate_form' %>
+  <div class="col-md-4">
+    <%#= render 'communicate_form' %>
   </div>
 
 <% else %>
@@ -36,54 +37,57 @@
 <% end %>
 <%#= @user.responder_users.count %>
 
-<% if user_signed_in? %>
-  <% provide(:title, @user.name) %>
-  <div class="span8">
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
-      <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+<%#Commented out the entire code below. Not needed %>
+<% if false %>
+  <% if user_signed_in? %>
+    <% provide(:title, @user.name) %>
+    <div class="col-md-8">
+      <% if @user.microposts.any? %>
+        <h3>Microposts (<%= @user.microposts.count %>)</h3>
+        <ol class="microposts">
+          <%= render @microposts %>
+        </ol>
+        <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+      <% end %>
+    </div>
     <% end %>
-  </div>
-  <% end %>
 
 
-<h1>Listing microposts</h1>
+  <h1>Listing microposts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th>User</th>
-      <th>Initiator</th>
-      <th>Responder</th>
-      <th>Topic</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @microposts.each do |micropost| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= micropost.content %></td>
-        <td><%= micropost.user_id %></td>
-        <td><%= micropost.initiator %></td>
-        <td><%= micropost.responder %></td>
-        <td><%= micropost.topic %></td>
-        <td><%= link_to 'Show', micropost %></td>
-        <td><%= link_to 'Edit', edit_micropost_path(micropost) %></td>
-        <td><%= link_to 'Destroy', micropost, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Content</th>
+        <th>User</th>
+        <th>Initiator</th>
+        <th>Responder</th>
+        <th>Topic</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @microposts.each do |micropost| %>
+        <tr>
+          <td><%= micropost.content %></td>
+          <td><%= micropost.user_id %></td>
+          <td><%= micropost.initiator %></td>
+          <td><%= micropost.responder %></td>
+          <td><%= micropost.topic %></td>
+          <td><%= link_to 'Show', micropost %></td>
+          <td><%= link_to 'Edit', edit_micropost_path(micropost) %></td>
+          <td><%= link_to 'Destroy', micropost, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<% if user_signed_in? %>
-  <%= link_to 'New Micropost', new_micropost_path %>
+  <br>
+
+  <% if user_signed_in? %>
+    <%= link_to 'New Micropost', new_micropost_path %>
+  <% end %>
 <% end %>

@@ -3,7 +3,9 @@ Pinteresting::Application.routes.draw do
 
   resources :pins
 
-  devise_for :users, :controllers => { :registrations => "users/registrations" }
+  #line below was written when I though I needed to add a custom registrations. but I updated Application controller instead and it works
+  #devise_for :users, :controllers => { :registrations => "users/registrations" }
+  devise_for :users
   resources :users do
   member do
       get :whoresponders, :whoinitiators, :conversations

@@ -1,5 +1,5 @@
 <% @user ||= current_user %>
-<div class="stats">
+<div class="col-md-4">
   <a href="<%#= responders_user_path(@user) %>">
     <strong id="responders" class="stat">
       <%= @user.responder_users.count %>

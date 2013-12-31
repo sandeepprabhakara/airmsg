@@ -1,3 +1,5 @@
+#I had written this when I thought I needed to add a custom controller for registration and had modified the routes. It turns out that 
+#all I needed to do was to updated application controller and added a new piece of code to require image
 class Users::RegistrationsController < Devise::RegistrationsController
    before_filter :configure_permitted_parameters, if: :devise_controller?
 

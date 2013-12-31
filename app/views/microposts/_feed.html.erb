@@ -1,4 +1,10 @@
 <% if @feed_items.any? %>
+
+	<aside>
+		<section>
+    <h1>Conversations (<%= @user.microposts.count %>)</h1>
+    </section>
+  </aside class: "form-control">
   <ol class="microposts">
     <%= render partial: 'feed_item', collection: @feed_items %>
   </ol>
