@@ -12,7 +12,14 @@ class UsersController < ApplicationController
     #@users = User.all
     #@users = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
     #@users = User.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
-    @users = User.all.order("created_at DESC")
+    #@users = User.all.order("created_at DESC")
+
+    @search = User.search do
+      fulltext params[:search]
+      paginate page: 1, per_page: 1000
+    end
+    @users = @search.results
+
   end
 
   def show

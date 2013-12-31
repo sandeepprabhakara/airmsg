@@ -1,0 +1,8 @@
+<%= form_tag users_path, :method => :get do %>
+<aside>
+  <div>
+	    <%= text_field_tag :search, params[:search], :class => "search-field", :placeholder => "Find people to talk to..." %>
+	    <%= submit_tag "Search", :name => nil, class: "btn btn-large btn-primary" %>
+  </div>
+ </aside>
+<% end %>

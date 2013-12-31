@@ -41,11 +41,13 @@ $blue: blue;
 aside {
   textarea {
     height: 150px;
-    width: 225px;
+    //width: 225px;
+    width: 100%;
     margin-bottom: 5px;
     border-radius: 5px;
     border-color: $grayLighter;
   }
+
 }
 
 .field {

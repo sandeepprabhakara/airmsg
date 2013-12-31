@@ -11,7 +11,7 @@ class PinsController < ApplicationController
     fulltext params[:search]
     #with(:published_at).less_than(Time.zone.now)
     #with(:publish_month, params[:month]) if params[:month].present?
-  end
+    end
     @pins = @search.results
     #@conversation_items = @pin.initiator.conversation_list(@pin.initiator, @pin.responder)
   end

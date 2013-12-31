@@ -1,3 +1,49 @@
-<% (1..User.count).each do |i|
-	<%= a %>
-<% end %>
+<ul>
+<%#= @users.count %>
+  <%# @users.each do |user| %>
+    <li><%#= user.name %></li>
+  <%# end %>
+</ul>
+
+<%# this code below works %>
+
+		
+<ul>
+  <%# @users.order('DESC').take(3).each do |first_user| %>
+  <% @users.limit(3).each do |first_user| %>
+  	<%# @users.order('DESC').take(3).each do |second_user| %>
+  	<% @users.limit(3).each do |second_user| %>
+
+	  	<% if first_user.communicating?(second_user) and (first_user != second_user) %>
+	  		<% @conversation_items = first_user.conversation_list(first_user, second_user) %>
+	  		<% messages = Array.new(@conversation_items.count) { |i|  } %>
+	  		<%# messages = "" %>
+	  		<%#= messages.inspect %>
+	  		<% @conversation_items.each_with_index do |conversation_item, i| %>
+	  			<%= messages[i] = conversation_item.content %>
+	  			<%#= messages.inspect %>
+	  			<%#= i == (@conversation_items.count-1) %>
+	  			<% if i == (@conversation_items.count-1) %>
+	  				<%# Pin.create(:description => conversation_item.content) %>
+	  				<%# Pin.create(:description => messages[i]) %>
+	  				<% Pin.create(:description => "desc1", :message1 => messages[0], :message2 => messages[1], :message3 => messages[2], :message4 => messages[3], :message5 => messages[4], :message6 => messages[5], :responder_id => first_user.id, :initiator_id => second_user.id) %>
+	  			<%end %>
+	  		<% end %>
+	  			<% if @conversation_items.any? %>
+	  			<%= first_user.name %>
+	  			<%= second_user.name %>
+
+	  				  <ol class="microposts">
+						    <%#= render partial: 'conversation_item', collection: @conversation_items %>
+						  </ol>
+						  <%#= will_paginate @conversation_items, renderer: BootstrapPagination::Rails %>
+	  			<% end %>
+	  		<%#= conversation_item.content %>
+	    	<li><%#= second_user.name %></li>
+    	<% else %>
+    	<% end %>
+  	<% end %>
+  <% end %>
+</ul>
+
+

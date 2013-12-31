@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
+  searchable do
+    text :name, :description, :location
+  end
+
   def feed
     #Micropost.where("user_id = ?", id)
     Micropost.from_users_responded_by(self).order("created_at DESC")
