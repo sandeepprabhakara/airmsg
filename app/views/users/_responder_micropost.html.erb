@@ -7,13 +7,18 @@
 	
 		<% if current_user.communicating?(@user) %>			
 		<% else %>
-			<div class="field">
-		    <%= f.text_area :topic, placeholder: "What do you want to talk about..." %>
-		  </div>
+			<aside>
+				<div>
+			    <%= f.text_area :topic, placeholder: "What do you want to talk about..." %>
+			  </div>
+		  </aside>
 	  <% end %>
-	  <div class="field">
-	    <%= f.text_area :content, placeholder: "Write to this user..." %>
-	  </div>
+
+	  <aside>
+		  <div class="good-border">
+		    <%= f.text_area :content, placeholder: "Write to this user..." %>
+		  </div>
+	  </aside>
 
 
 	  <%= f.submit "Post", class: "btn btn-large btn-primary" %>

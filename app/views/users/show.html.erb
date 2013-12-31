@@ -1,33 +1,49 @@
 <%# This code is very preliminary. Need to put the code to show user profile when a user click on a user's name %>
 
-<%= link_to 'Back', root_path %>
+<%#= link_to 'Back', root_path %>
 
 <div class="row">
-	<div class="col-md-offset-2 col-md-8">
-		<div class="panel panel-default">
-			<div class="panel-heading center">
-				<%= image_tag @user.image.url(:medium) %>	
-			</div>
-			<div class="panel-body">
-				<p><%#= @pin.description %></p>
-				<p><strong><%= @user.name %></strong></p>
-					<% if @user == current_user %>
-						<%= link_to edit_user_path(@pin) do %>
-            <span class="glyphicon glyphicon-edit"></span>Edit
-          <% end %>
-				<% end %> 
-			</div>
-		</div>
+	<div class="col-md-offset-2 col-md-8 light-gray-background">
+		<% if false%> <div class="panel panel-default"> <% end %>
+			
+				<div class="gravatar col-md-8">
+					<p><%#= @pin.description %></p>
+					<div class="">
+						<%= image_tag @user.image.url(:profile) %>	
+					</div>
+					<%#= image_tag @user.image.url(:medium) %>	
+					<h2><%= @user.name %></h2>
+					<p><strong><%#= @user.name %></strong></p>
+					<p> Talk to me about... </p>
+						<% if @user == current_user %>
+							<%= link_to edit_user_path(@pin) do %>
+	            <span class="glyphicon glyphicon-edit"></span>Edit
+	          <% end %>
+					<% end %> 
+				</div>
+
+
+				<div class="right-gravatar">
+			  	<%= render 'responder_micropost', :microposts => @micropost %>
+				</div>
+
 	</div>
 </div>
 
-<section>
-  <%= render 'responder_micropost', :microposts => @micropost %>
-</section>
 
+<p></p>
 <%# This is to list out the conversation between users %>
-<section>
-  <%= render 'conversation', :users => @user %>
+<section class="row">
+
+	<div class="col-md-offset-2 col-md-8 good-border light-gray-background">
+
+		<aside>
+			<section>
+	    <h1>Conversations with <%= @user.name %></h1>
+	    </section>
+	  </aside>
+  	<%= render 'conversation', :users => @user %>
+  </div>
 </section>
 
 <div class="span8">

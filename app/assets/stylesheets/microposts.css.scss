@@ -6,6 +6,7 @@
 /* microposts */
 
 $grayLight: #999;
+$grayLighter: #eee;
 $blue: blue;
 
 .microposts {
@@ -31,11 +32,25 @@ $blue: blue;
   margin-right: 10px;
 }
 
+.right-gravatar {
+  float: right;
+  //margin-left: 10px;
+  width: 225px;
+}
+
 aside {
   textarea {
-    height: 75px;
+    height: 150px;
+    width: 225px;
     margin-bottom: 5px;
+    border-radius: 5px;
+    border-color: $grayLighter;
   }
+}
+
+.field {
+  //height: 75px;
+  //width: 50px;
 }
 
 .stats {

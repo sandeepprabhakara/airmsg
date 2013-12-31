@@ -25,14 +25,28 @@ $grayLight: #999;
   font-weight: bold;
 }
 
+.navbar-background{
+	background-image: url('debut_dark.png');
+	//background-image: url('black-Linen.png');
+}
+
 .good-border {
   border: 1px solid $grayLight;
   border-radius: 5px;
   padding-top: 5px;
+  border-color: $grayLighter;
 }
 
 .gray-background {
-  //background: $grayLighter;
+	padding-top: 5px;
+	border-radius: 5px;
+  background: $grayLight;
+}
+
+.light-gray-background {
+	padding-top: 5px;
+	border-radius: 5px;
+  background: $grayLighter;
 }
 
 
