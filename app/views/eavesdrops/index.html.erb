@@ -1,0 +1,31 @@
+<h1>Listing eavesdrops</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Initiator</th>
+      <th>Responder</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @eavesdrops.each do |eavesdrop| %>
+      <tr>
+        <td><%= eavesdrop.user_id %></td>
+        <td><%= eavesdrop.initiator_id %></td>
+        <td><%= eavesdrop.responder_id %></td>
+        <td><%= link_to 'Show', eavesdrop %></td>
+        <td><%= link_to 'Edit', edit_eavesdrop_path(eavesdrop) %></td>
+        <td><%= link_to 'Destroy', eavesdrop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Eavesdrop', new_eavesdrop_path %>

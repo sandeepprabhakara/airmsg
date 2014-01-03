@@ -1,0 +1,6 @@
+<%= form_for(current_user.eavesdrops.build(user_id: current_user.id, initiator_id: @pin.initiator.id, responder_id: @pin.responder.id)) do |f| %>
+  <div><%= f.hidden_field :user_id %></div>
+  <div><%= f.hidden_field :initiator_id %></div>
+  <div><%= f.hidden_field :responder_id %></div>
+  <%= f.submit "Eavesdrop", class: "btn btn-large btn-primary" %>
+<% end %>

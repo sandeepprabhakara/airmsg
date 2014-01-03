@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @eavesdrop.user_id %>
+</p>
+
+<p>
+  <strong>Initiator:</strong>
+  <%= @eavesdrop.initiator_id %>
+</p>
+
+<p>
+  <strong>Responder:</strong>
+  <%= @eavesdrop.responder_id %>
+</p>
+
+<%= link_to 'Edit', edit_eavesdrop_path(@eavesdrop) %> |
+<%= link_to 'Back', eavesdrops_path %>

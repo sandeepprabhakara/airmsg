@@ -12,13 +12,24 @@
       <section>
         <%= render 'users/search' %>
       </section>
+
+      <% if @eavesdrop_items.any? %>
+        <div class="good-border">
+          <%= render 'eavesdrop_list' %>
+        </div>
+      <% else %>
+        <div class="good-border">
+          <section>
+            <h1>You are not eavesdropping on any conversations. Check out a few recommendations below...</h1> 
+          </section>
+        </div>  
+      <% end %>
     </aside>
     
     <div class="col-md-1"></div>
     <div class="col-md-8 good-border light-gray-background">
       <%= render 'feed' %>
     </div>
-
   </div>
 
   <div class="col-md-3">

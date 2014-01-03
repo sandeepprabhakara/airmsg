@@ -9,9 +9,13 @@ class MicropostsController < ApplicationController
     #@user = User.find(params[:id])
     #@microposts = @user.microposts.paginate(:page => params[:page], :per_page => 5)
     @microposts = Micropost.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
+    #@pin = Pin.where("initiator_id = (?) AND responder_id = (?)", @eavesdrop.initiator_id, @eavesdrop.responder_id)
     if signed_in?
       @micropost = current_user.microposts.build if signed_in?
-      @feed_items = current_user.feed.paginate(page: params[:page], :per_page => 10)
+      #@feed_items = current_user.feed.paginate(page: params[:page], :per_page => 10)
+      @feed_items = Micropost.where("initiator = (?) OR responder = (?)", current_user, current_user).paginate(page: params[:page], :per_page => 10)
+      @eavesdrop_items = current_user.eavesdrops
+      #@pins = current_user.eaveslist(@eavesdrop_items)
     end
 
   end
@@ -42,15 +46,22 @@ class MicropostsController < ApplicationController
 
     respond_to do |format|
       if @micropost.save
-        format.html { redirect_to root_url, notice: 'Micropost was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Conversation was successfully created.' }
         format.json { render action: 'show', status: :created, location: @micropost }
         #flash[:success] = "Micropost created!"
         #redirect_to root_url
+      if (@micropost.topic == nil or @micropost.topic == "")
+      else
+        current_user.communicate!(User.find_by_id(@micropost.responder))
+      end
+
+
       else
         format.html { render action: root_url }
         format.json { render json: @micropost.errors, status: :unprocessable_entity }
         @feed_items = []
       end
+
     end
   end
 

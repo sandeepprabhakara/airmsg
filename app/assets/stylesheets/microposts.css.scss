@@ -34,20 +34,33 @@ $blue: blue;
 
 .right-gravatar {
   float: right;
-  //margin-left: 10px;
+  margin-left: 10px;
   width: 225px;
 }
 
 aside {
   textarea {
-    height: 150px;
+    //height: 150px;
     //width: 225px;
     width: 100%;
     margin-bottom: 5px;
     border-radius: 5px;
     border-color: $grayLighter;
   }
+}
 
+.normal-text-field{
+  height: 25px;
+  width: 100%;
+}
+
+.medium-text-field{
+  height: 50px;
+  width: 100%;
+}
+
+.big-text-field{
+  height: 150px;
 }
 
 .field {

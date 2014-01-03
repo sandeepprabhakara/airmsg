@@ -1,12 +1,32 @@
 <%= link_to 'Back', pins_path %>
-<%= @pin.responder.name %>
+<%#= @pin.responder.name %>
 
+<div class="row">
+	<div class="col-md-offset-2 col-md-8 light-gray-background">
+		
+		<div class="center col-md-6">
+			<%= image_tag @pin.initiator.image.url(:profile) %>	
+
+			<h3><%= link_to @pin.initiator.name, @pin.initiator %></h3>
+		</div>
+		<div class="center col-md-6">
+			<%= image_tag @pin.responder.image.url(:profile) %>	
+
+			<h3><%= link_to @pin.responder.name, @pin.responder %></h3>
+			</div>
+	</div>
+</div>
+<p></p>
+
+<% if false %>
 <div class="row">
 	<div class="col-md-offset-2 col-md-8">
 		<div class="panel panel-default">
 			<div class="panel-heading center">
 				<%= image_tag @pin.image.url(:medium) %>	
 			</div>
+
+			<% if false %>
 			<div class="panel-body">
 				<p><%= @pin.description %></p>
         <p><%= @pin.message1 %></p>
@@ -22,15 +42,33 @@
           <% end %>
 				<% end %> 
 			</div>
+			<% end %>
 		</div>
 	</div>
 </div>
-
+<% end %>
 <%# @conversation_items = @pin.initiator.conversation_list(@pin.initiator, @pin.responder) %>
 <%# This is to list out the conversation between users %>
 <section>
-  <%= render 'users/conversation', :collection => @conversation_items %>
+  <%#= render 'users/conversation', :collection => @conversation_items %>
 </section>
+
+<section class="row">
+
+	<div class="col-md-offset-2 col-md-8 good-border light-gray-background">
+
+		<aside >
+			<section>
+		    <h1 class="center">Conversation between <%= @pin.responder.name %> and <%= @pin.initiator.name %>
+		    <p></p> 
+		    <%= render 'pins/eavesdrop_form' %>
+		    </h1>
+	    </section>
+	  </aside>
+  	<%= render 'users/conversation', :collection => @conversation_items %>
+  </div>
+</section>
+
 
 <div class="span8">
   <%#= render 'microposts/communicate_form' %>

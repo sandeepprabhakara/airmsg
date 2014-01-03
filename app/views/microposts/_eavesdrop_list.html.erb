@@ -1,0 +1,12 @@
+<% if @eavesdrop_items.any? %>
+<%#= @eavesdrop_items.count %>
+	<aside>
+		<section>
+      <h1>Conversations you are eavesdropping</h1> 
+    </section>
+  </aside>
+  <ol class="microposts">
+    <%= render partial: 'eavesdrop_item', collection: @eavesdrop_items %>
+  </ol>
+  <%#= will_paginate @eavesdrop_items, renderer: BootstrapPagination::Rails %>
+<% end %>

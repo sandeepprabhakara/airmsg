@@ -8,19 +8,18 @@
 		<% if current_user.communicating?(@user) %>			
 		<% else %>
 			<aside>
-				<div>
-			    <%= f.text_area :topic, placeholder: "What do you want to talk about..." %>
+				<div class="good-border">
+			    <%= f.text_area :topic, placeholder: "Put the topic of your conversation here...", :required => true %>
 			  </div>
-		  </aside>
+	 		</aside>
 	  <% end %>
 
 	  <aside>
 		  <div class="good-border">
-		    <%= f.text_area :content, placeholder: "Write to this user..." %>
+		    <%= f.text_area :content, placeholder: "Write to this user...", class: "big-text-field", :required => true %>
 		  </div>
 	  </aside>
 
-
-	  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+	  <%= f.submit "Let us talk", class: "btn btn-large btn-primary" %>
 	<% end %>
 <% end %>

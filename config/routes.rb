@@ -1,4 +1,6 @@
 Pinteresting::Application.routes.draw do
+  resources :eavesdrops
+
   resources :microposts
 
   resources :pins

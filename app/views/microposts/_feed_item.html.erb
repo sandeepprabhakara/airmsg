@@ -5,9 +5,31 @@
 	</div>
 
   <span class="user">
-    <%= link_to feed_item.user.name, feed_item.user %>
+    <%#= link_to feed_item.user.name, feed_item.user %>
+
+ 
   </span>
-  <span class="content"><%= feed_item.content %></span>
+
+  <span class="content">
+    <% if current_user.id == feed_item.responder %>
+    <aside> 
+      <section> 
+        <h5> with <%= link_to User.find_by_id(feed_item.initiator).name, User.find_by_id(feed_item.initiator) %></h5>   
+      </section>
+    </aside>      
+    <%#= feed_item.content %>
+    <% elsif current_user.id == feed_item.initiator %>
+    <aside> 
+      <section> 
+        <h5> with <%= link_to User.find_by_id(feed_item.responder).name, User.find_by_id(feed_item.responder) %></h5>   
+      </section>
+    </aside>
+
+      <%#= feed_item.content %>
+    <% end %>
+    <%= feed_item.content %>
+  </span>
+
   <span class="timestamp">
     Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
   </span>

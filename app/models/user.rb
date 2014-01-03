@@ -10,8 +10,9 @@ class User < ActiveRecord::Base
   has_many :responder_users, through: :relationships, source: :responder
   has_many :reverse_relationships, foreign_key: "responder_id", class_name: "Relationship", dependent: :destroy
   has_many :initiators, through: :reverse_relationships, source: :initiator
+  has_many :eavesdrops
 
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "50x50>", :profile => "150x150>" }
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "50x50>", :profile => "150x150>" }, :default_url => 'default_gravatar_:style.jpg'
 
   validates :name, presence: true
 
@@ -28,7 +29,9 @@ class User < ActiveRecord::Base
   def conversation(other_user)
     #Micropost.from_certain_user(self).order("created_at DESC")
     #Micropost.from_certain_user(self)
-    Micropost.where("user_id = ? OR user_id = ?", other_user.id, id)
+    #Micropost.where("user_id = ? OR user_id = ?", other_user.id, id)
+    current_user = User.find_by_id(id)
+    Micropost.where("(initiator = (?) and responder = (?)) or (initiator = (?) and responder = (?))", current_user, other_user, other_user, current_user)
   end
 
   def conversation_list(first_user, second_user)
@@ -47,6 +50,25 @@ class User < ActiveRecord::Base
 
 	def uncommunicate!(other_user)
     relationships.find_by(responder_id: other_user.id).destroy!
+  end
+
+  def eavesdropping?(current_user, first_user, second_user)
+    eavesdrops.find_by(user_id: current_user.id, initiator_id: first_user.id, responder_id: second_user.id)
+  end
+
+  def eavesdrop!(current_user, first_user, second_user)
+    eavesdrops.create!(user_id: current_user.id, initiator_id: first_user.id, responder_id: second_user.id)
+  end
+
+  def uneavesdrop!(current_user, first_user, second_user)
+    eavesdrops.find_by(user_id: current_user.id, initiator_id: first_user.id, responder_id: second_user.id).destroy!
+  end
+
+  def eaveslist(eavesdrop)
+    #Micropost.where("user_id = ?", id)
+    Pin.where("initiator_id = (?) AND responder_id = (?)", eavesdrop.initiator_id, eavesdrop.responder_id)
+    #eavesdrop.Pin
+    #Micropost.from_users_responded_by(self).order("created_at DESC")
   end
 
 end

@@ -12,9 +12,14 @@
 						<%= image_tag @user.image.url(:profile) %>	
 					</div>
 					<%#= image_tag @user.image.url(:medium) %>	
-					<h2><%= @user.name %></h2>
+					<h3><%= @user.name %></h3>
 					<p><strong><%#= @user.name %></strong></p>
-					<p> Talk to me about... </p>
+					<!-- <p> Talk to me about... </p> -->
+					<% if @user.location == nil or @user.location == "" %>
+					<% else %>
+						<p>Lives in <%= @user.location %></p>
+					<% end %>
+					<p><em><%= @user.description %></em></p>
 						<% if @user == current_user %>
 							<%= link_to edit_user_path(@pin) do %>
 	            <span class="glyphicon glyphicon-edit"></span>Edit
@@ -34,19 +39,40 @@
 <p></p>
 <%# This is to list out the conversation between users %>
 <section class="row">
-
 	<div class="col-md-offset-2 col-md-8 good-border light-gray-background">
+		<% if current_user == @user %>
+			<aside>
+				<section>
+					<h1>Update your details below. This will help others discover you faster</h1>
+				</section>
+			</aside>
+			<%= render 'update_user_details', :users => current_user %>
+		<% elsif @conversation_items.any? and current_user != @user %>
+			<aside>
+				<section>
+		    <h1>Your conversations with <%= @user.name %></h1>
+		    </section>
+		  </aside>
+		  <div class="span8 center">
+			  <%= render 'microposts/communicate_form' %>
+			</div>
 
-		<aside>
-			<section>
-	    <h1>Conversations with <%= @user.name %></h1>
-	    </section>
-	  </aside>
-  	<%= render 'conversation', :users => @user %>
+	  	<%= render 'conversation', :users => @user %>
+  	<% elsif not(@conversation_items.any?) %>
+			<aside>
+				<section>
+		    <h1>You currently do not have any conversations with <%= @user.name %></h1>
+		    </section>
+		    <%#= render 'update_user_details', :users => current_user %>
+		  </aside>
+		<% end %>
   </div>
 </section>
 
+<!--
 <div class="span8">
   <%= render 'microposts/communicate_form' %>
 </div>
+
+-->
 

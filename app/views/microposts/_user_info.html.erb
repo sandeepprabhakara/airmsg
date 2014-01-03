@@ -7,13 +7,16 @@
 </h1>
 
 
+
+<span>
+<em> view profile </em>
+  <%#= link_to "view my profile", current_user %></br>
+</span>
+
+
 <% if false %>
-	<span>
-	  <%#= link_to "view my profile", current_user %></br>
-	</span>
-
-<% end %>
-
 	<span>
 	  <%= pluralize(current_user.microposts.count, "Message") %>
 	</span>
+
+<% end %>

@@ -1,0 +1,23 @@
+<%#= form_for(current_user.build(user_id: current_user.id)) do |f| %>
+<%= form_for(current_user, url: {action: "update"}) do |f| %>
+	  <div class="good-border field">
+	  	<div>
+	  		<%# if current_user.description == nil or current_user.description == "" %>
+	    		<%= f.text_area :description, placeholder: "Tell us about your specific interests. Others will search for you based on this. For e.g., 'Talk to me about skiing, spanish cuisine, big data analytics'", class: "medium-text-field"  %>
+	    	<%# end %>
+	    </div>
+	    <p></p>
+	    <div>
+	    	<%# if current_user.location == nil or current_user.location == "" %>
+	    		<%= f.text_area :location, placeholder: "Add your location. Other can connect with you based on where you live", class: "medium-text-field"  %>
+	    	<%# end %>
+	    </div>
+	  </div>
+
+	  <p></p>
+	  <%# if (current_user.description == nil) or (current_user.location == nil) or (current_user.description == "") or (current_user.location == "")%>
+	  	<%= f.submit "Update my account", class: "btn btn-large btn-primary" %>
+	  <%# else %>
+	  <%# end %>
+	  <p></p>
+<% end %>

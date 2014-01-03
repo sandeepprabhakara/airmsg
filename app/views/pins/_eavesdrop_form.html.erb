@@ -1,0 +1,9 @@
+<% unless current_user?(@user) %>
+  <div id="eavesdrop_form">
+	  <% if current_user.eavesdropping?(current_user, @pin.initiator, @pin.responder) %>
+	    <%= render 'pins/uneavesdrop' %>
+	  <% else %>
+	    <%= render 'pins/eavesdrop' %>
+	  <% end %>
+  </div>
+<% end %>
