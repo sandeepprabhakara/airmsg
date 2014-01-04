@@ -8,6 +8,7 @@
 $grayLight: #999;
 $grayLighter: #eee;
 $blue: blue;
+$brand-primary: #c0392b;
 
 .microposts {
   list-style: none;
@@ -27,9 +28,25 @@ $blue: blue;
   color: $grayLight;
 }
 
+
+.standout {
+  color: $brand-primary;
+}
+
 .gravatar {
   float: left;
   margin-right: 10px;
+}
+
+.gravatar-wide {
+  float: left;
+  //margin-right: 10px;
+  width: 100%;
+}
+
+.pin-box {
+  width: 200px;
+  margin: 5px;
 }
 
 .right-gravatar {

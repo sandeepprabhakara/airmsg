@@ -1,4 +1,4 @@
-<%= link_to 'Back', pins_path %>
+<%= link_to 'Eavesdrop on other conversations', pins_path %>
 <%#= @pin.responder.name %>
 
 <div class="row">
@@ -19,33 +19,33 @@
 <p></p>
 
 <% if false %>
-<div class="row">
-	<div class="col-md-offset-2 col-md-8">
-		<div class="panel panel-default">
-			<div class="panel-heading center">
-				<%= image_tag @pin.image.url(:medium) %>	
-			</div>
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8">
+			<div class="panel panel-default">
+				<div class="panel-heading center">
+					<%= image_tag @pin.image.url(:medium) %>	
+				</div>
 
-			<% if false %>
-			<div class="panel-body">
-				<p><%= @pin.description %></p>
-        <p><%= @pin.message1 %></p>
-        <p><%= @pin.message2 %></p>
-        <p><%= @pin.message3 %></p>
-        <p><%= @pin.message4 %></p>
-        <p><%= @pin.message5 %></p>
-        <p><%= @pin.message6 %></p>
-				<p><strong><%= @pin.user.name if @pin.user %></strong></p>
-				<% if @pin.user == current_user %>
-					<%= link_to edit_pin_path(@pin) do %>
-            <span class="glyphicon glyphicon-edit"></span>Edit
-          <% end %>
-				<% end %> 
+				<% if false %>
+				<div class="panel-body">
+					<p><%= @pin.description %></p>
+	        <p><%= @pin.message1 %></p>
+	        <p><%= @pin.message2 %></p>
+	        <p><%= @pin.message3 %></p>
+	        <p><%= @pin.message4 %></p>
+	        <p><%= @pin.message5 %></p>
+	        <p><%= @pin.message6 %></p>
+					<p><strong><%= @pin.user.name if @pin.user %></strong></p>
+					<% if @pin.user == current_user %>
+						<%= link_to edit_pin_path(@pin) do %>
+	            <span class="glyphicon glyphicon-edit"></span>Edit
+	          <% end %>
+					<% end %> 
+				</div>
+				<% end %>
 			</div>
-			<% end %>
 		</div>
 	</div>
-</div>
 <% end %>
 <%# @conversation_items = @pin.initiator.conversation_list(@pin.initiator, @pin.responder) %>
 <%# This is to list out the conversation between users %>

@@ -1,6 +1,9 @@
 <%= form_tag pins_path, :method => :get do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
+	<aside>
+	  <div>
+	    <%= text_field_tag :search, params[:search], :class => "search-field", :placeholder => "Find conversations to eavesdrop..." %>
+	    <%= submit_tag "Search", :name => nil, class: "btn btn-large btn-primary"  %>
+	  </div>
+	 </aside>
+ <% end %>
+

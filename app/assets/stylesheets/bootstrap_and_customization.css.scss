@@ -38,6 +38,13 @@ $grayLight: #999;
   border-color: $grayLighter;
 }
 
+.good-sharpborder {
+  border: 1px solid $grayLight;
+  //border-radius: 5px;
+  padding-top: 5px;
+  border-color: $grayLighter;
+}
+
 .gray-background {
 	padding-top: 5px;
 	border-radius: 5px;

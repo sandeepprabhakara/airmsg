@@ -9,6 +9,7 @@ class PinsController < ApplicationController
     #@pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
     @search = Pin.search do
     fulltext params[:search]
+    #phrase_slop 1
     #with(:published_at).less_than(Time.zone.now)
     #with(:publish_month, params[:month]) if params[:month].present?
     end

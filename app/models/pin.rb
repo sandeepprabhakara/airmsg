@@ -11,7 +11,8 @@ class Pin < ActiveRecord::Base
 	validates :description, presence: true
 
 	searchable do
-		text :description, :message1, :message2, :message3, :message4, :message5, :message6
+		text :description
+		# :message1, :message2, :message3, :message4, :message5, :message6
 		#, :name
 	end
 

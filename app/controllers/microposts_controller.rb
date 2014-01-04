@@ -50,11 +50,16 @@ class MicropostsController < ApplicationController
         format.json { render action: 'show', status: :created, location: @micropost }
         #flash[:success] = "Micropost created!"
         #redirect_to root_url
-      if (@micropost.topic == nil or @micropost.topic == "")
+      
+      #if (@micropost.topic == nil or @micropost.topic == "")
+      #else
+        #current_user.communicate!(User.find_by_id(@micropost.responder))
+      #end
+      if current_user.communicating?(User.find_by_id(@micropost.responder))
       else
         current_user.communicate!(User.find_by_id(@micropost.responder))
+        Pin.create(:description => @micropost.topic, :responder_id => @micropost.responder, :initiator_id => @micropost.initiator)
       end
-
 
       else
         format.html { render action: root_url }
