@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131231200039) do
+ActiveRecord::Schema.define(version: 20140105174757) do
 
   create_table "eavesdrops", force: true do |t|
     t.integer  "user_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20131231200039) do
     t.string   "message6"
     t.integer  "initiator_id"
     t.integer  "responder_id"
+    t.integer  "recommend"
   end
 
   add_index "pins", ["user_id"], name: "index_pins_on_user_id"

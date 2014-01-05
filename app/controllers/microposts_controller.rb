@@ -15,6 +15,7 @@ class MicropostsController < ApplicationController
       #@feed_items = current_user.feed.paginate(page: params[:page], :per_page => 10)
       @feed_items = Micropost.where("initiator = (?) OR responder = (?)", current_user, current_user).paginate(page: params[:page], :per_page => 10)
       @eavesdrop_items = current_user.eavesdrops
+      @eavesdrop_recommend_items = current_user.eaveslist_recommend
       #@pins = current_user.eaveslist(@eavesdrop_items)
     end
 

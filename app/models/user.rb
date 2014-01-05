@@ -72,4 +72,11 @@ class User < ActiveRecord::Base
     #Micropost.from_users_responded_by(self).order("created_at DESC")
   end
 
+  def eaveslist_recommend()
+    #Micropost.where("user_id = ?", id)
+    Pin.where("recommend = (?)", 1)
+    #eavesdrop.Pin
+    #Micropost.from_users_responded_by(self).order("created_at DESC")
+  end
+
 end
