@@ -6,9 +6,11 @@
       <section>
         <%= render 'user_info' %>
       </section>
+      <!--
       <section>
-        <%= render 'micropost_form' %>
+        <%#= render 'micropost_form' %>
       </section>
+      -->
       <section>
         <%= render 'users/search' %>
       </section>
@@ -25,23 +27,36 @@
         </div>  
       <% end %>
     </aside>
-    
-    <div class="col-md-1"></div>
-    <div class="col-md-8 good-border light-gray-background">
-      <%= render 'feed' %>
-    </div>
-  </div>
+  
 
+    <div class="col-md-1"></div>
+      <div class="col-md-8 good-border light-gray-background">
+        <% if @feed_items.any? %>  
+          <%= render 'feed' %>
+        <% else %>
+      <aside>
+        <section>
+          <h1>You current have no conversations but here are a few things you can do...</h1><p></p>
+          <ul>
+            <li><h5>You can search for other people by their interests or location to talk to <em>(to the left)</em></h5></li>
+            <li><h5>You can eavesdrop on recommended conversations <em>(to the left)</em></h5></li>
+            <li><h5>You can look up other people to talk to or conversations to eavesdrop <em>(to the top)</em></h5></li>
+          </ul>
+        </section>
+      </aside>
+        <% end %>
+      </div>
+    </div>
   <div class="col-md-3">
     <%#= render 'communicate_form' %>
   </div>
 
 <% else %>
   <div class="jumbotron center">
-    <h1>Welcome to the Air Messaging</h1>
+    <h1>Welcome to AirMessage</h1>
 
     <h2>
-      This is the home page for the <a href="#">Air Message</a> sample application.
+      This is the home page for the <a href="#">Air Message</a> application.
     </h2>
     <%= link_to "Login", new_user_session_path, class: "btn btn-default btn-lg" %>
     <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-default btn-lg" %>

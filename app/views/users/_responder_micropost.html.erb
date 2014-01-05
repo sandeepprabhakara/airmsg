@@ -1,5 +1,5 @@
 <% unless current_user?(@user) %>
-<% topic = Micropost.where("(initiator = (?) OR responder = (?)) and (topic != (?) OR topic != (?))", current_user.id, @user.id, nil, "").first.topic %> 
+<%# topic = Micropost.where("(initiator = (?) OR responder = (?)) and (topic != (?) OR topic != (?))", current_user.id, @user.id, nil, "").first.topic %> 
 	
 	<% if current_user.communicating?(@user) %>
 		<%= form_for(current_user.microposts.build(user_id: current_user.id, initiator: current_user.id, responder: @user.id, topic:  Micropost.where("(initiator = (?) OR responder = (?)) and (topic != (?) OR topic != (?))", current_user.id, @user.id, nil, "").first.topic)) do |f| %>

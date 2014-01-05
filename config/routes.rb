@@ -28,6 +28,7 @@ Pinteresting::Application.routes.draw do
 
   root "microposts#index"
   get "about" => "pages#about"
+  get "conversations" => "pins#index"
   #get "users/:id/whoresponders" => "microposts#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

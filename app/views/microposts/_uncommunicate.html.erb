@@ -1,3 +1,3 @@
 <%= form_for(current_user.relationships.find_by(responder_id: @user), html: { method: :delete }) do |f| %>
-  <%= f.submit "uncommunicate", class: "btn btn-large  btn-primary", confirm: "Are you sure. This will terminate the conversation" %>
+  <%= f.submit "uncommunicate", class: "btn btn-large btn-primary", confirm: "Are you sure. This will terminate the conversation" %>
 <% end %>
