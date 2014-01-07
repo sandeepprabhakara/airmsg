@@ -50,7 +50,7 @@
 		<% elsif @conversation_items.any? and current_user != @user %>
 			<aside>
 				<section>
-		    <h1>Your conversations with <%= @user.name %> on <font color="#c0392b"><%#= Micropost.where("(initiator = (?) OR responder = (?)) and (topic != (?) OR topic  != (?))", current_user.id, @user.id, nil, "").first.topic %></font></h1>
+		    <h1>Your conversations with <%= @user.name %> on <font color="#c0392b"><%= Micropost.where("(initiator = (?) and responder = (?)) or (initiator = (?) and responder = (?)) and (topic != (?) OR topic  != (?))", current_user.id, @user.id, @user.id, current_user.id, nil, "").first.topic %></font></h1>
 
 		    <%#= Micropost.where("(initiator = (?) OR responder = (?)) and (topic != (?) OR topic  != (?))", current_user.id, @user.id, nil, "").first.topic %>
 		    </section>
