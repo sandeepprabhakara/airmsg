@@ -17,18 +17,20 @@
       
       
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Users", "/users#index" %></li>
-        <li><%= link_to "Conversations", "/pins#index" %></li>
-        <li><%= link_to "About Us", about_path %></li>
+
+
         <% if user_signed_in? %>
           <li><!--
             <%= link_to new_pin_path do %>
               <span class="glyphicon glyphicon-plus"></span>New Pin
             <% end %> -->
           </li>
+          <li><%= link_to "Users", "/users#index" %></li>
+          <li><%= link_to "Conversations", "/pins#index" %></li>
           <li><%= link_to "Account Settings", edit_user_registration_path %></li>
           <li><%= link_to "Log out", destroy_user_session_path, method: :delete  %></li>
         <% else %>
+          <li><%= link_to "About Us", about_path %></li>
           <li><%= link_to "Sign in", new_user_session_path %></li>
         <% end %>
       </ul>
