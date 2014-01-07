@@ -1,3 +1,22 @@
-<%= form_for(current_user.relationships.find_by(responder_id: @user), html: { method: :delete }) do |f| %>
-  <%= f.submit "uncommunicate", class: "btn btn-large btn-primary", confirm: "Are you sure. This will terminate the conversation" %>
+<%#= current_user.id %>
+<%#= form_for(current_user.relationships.find_by(responder_id: @user), html: { method: :delete }) do |f| %>
+  <div><%#= f.hidden_field :responder_id %></div>
+  <%#= f.submit "uncommunicate", class: "btn btn-large btn-primary", confirm: "Are you sure. This will terminate the conversation" %>
+<%# end %>
+
+<%#= form_for(Relationship.where("(initiator_id = (?) and responder_id = (?)) or (initiator_id = (?) and responder_id = (?))", current_user.id, @user.id, @user.id, current_user.id), html: { method: :delete }) do |f| %>
+
+<%#= form_for(current_user.relationships, html: { method: :delete }) do |f| %>
+
+<%#= form_for(Relationship.where("initiator_id = ?",@user.id), html: { method: :delete }) do |f| %>
+
+<% if @user.relationships.find_by(responder_id: current_user) %>
+	<%= form_for(@user.relationships.find_by(responder_id: current_user), html: { method: :delete }) do |f| %>
+  <%= f.submit "End Communication", class: "btn btn-large btn-primary", confirm: "Are you sure. This will terminate the conversation with this user" %>
+	<% end %>
+
+<% elsif current_user.relationships.find_by(responder_id: @user) %>
+  <%= form_for(current_user.relationships.find_by(responder_id: @user), html: { method: :delete }) do |f| %>
+  <%= f.submit "End Communication", class: "btn btn-large btn-primary", confirm: "Are you sure. This will terminate the conversation with this user" %>
+  <% end %>
 <% end %>
