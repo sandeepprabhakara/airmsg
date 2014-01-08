@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :invitable, :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable,
+         :invitation_limit => 1
 
   has_many :pins
   has_many :microposts, dependent: :destroy
@@ -79,5 +81,11 @@ class User < ActiveRecord::Base
     #eavesdrop.Pin
     #Micropost.from_users_responded_by(self).order("created_at DESC")
   end
+
+
+protected
+  #def confirmation_required?
+    #false
+  #end
 
 end

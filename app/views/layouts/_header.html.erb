@@ -28,6 +28,7 @@
           <li><%= link_to "Users", "/users#index" %></li>
           <li><%= link_to "Conversations", "/pins#index" %></li>
           <li><%= link_to "Account Settings", edit_user_registration_path %></li>
+          <li><%= link_to "Invite Friends", new_user_invitation_path %></li>
           <li><%= link_to "Log out", destroy_user_session_path, method: :delete  %></li>
         <% else %>
           <li><%= link_to "About Us", about_path %></li>

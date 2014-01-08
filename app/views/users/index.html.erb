@@ -48,7 +48,7 @@
 	  	<%# @users.order('DESC').take(3).each do |second_user| %>
 	  	<% @users.limit(3).each do |second_user| %>
 
-		  	<% if first_user.communicating?(second_user) and (first_user != second_user) %>
+		  	<% if first_user.communicating?(first_user, second_user) and (first_user != second_user) %>
 		  		<% @conversation_items = first_user.conversation_list(first_user, second_user) %>
 		  		<% messages = Array.new(@conversation_items.count) { |i|  } %>
 		  		<%# messages = "" %>
