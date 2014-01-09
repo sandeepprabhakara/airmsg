@@ -1,7 +1,18 @@
 <% unless current_user?(@user) %>
 <%# topic = Micropost.where("(initiator = (?) OR responder = (?)) and (topic != (?) OR topic != (?))", current_user.id, @user.id, nil, "").first.topic %> 
-	
-	<% if current_user.communicating?(current_user, @user) %>
+<% if false %>
+<%= current_user.id %>
+<%= @user.id %>
+<p></p>
+	<% if current_user.communicating?(current_user, @user).count == 0 %>
+	<%= current_user.id %>
+	<% else %>
+	<%= @user.id %>
+	<% end %>
+<% end %>
+
+<%# if false %>	
+	<% if current_user.communicating?(current_user, @user).any? %>
 		<%= form_for(current_user.microposts.build(user_id: current_user.id, initiator: current_user.id, responder: @user.id, topic:  Micropost.where("(initiator = (?) and responder = (?)) or (initiator = (?) OR responder = (?)) and (topic != (?) OR topic != (?))", current_user.id, @user.id, @user.id, current_user.id, nil, "").first.topic)) do |f| %>
 
 			<div><%= f.hidden_field :user_id %></div>
@@ -56,3 +67,5 @@
 		<% end %>
 	<% end %>
 <% end %>
+
+<%# end %>

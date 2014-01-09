@@ -45,7 +45,9 @@ class User < ActiveRecord::Base
 
   def communicating?(current_user, other_user)
   	#relationships.find_by(responder_id: other_user.id)
-    Relationship.where("(initiator_id = ? AND responder_id = ?) or (initiator_id = ? AND responder_id = ?)", current_user.id, other_user.id, other_user.id, current_user.id)
+    #Relationship.where("(initiator_id = ? AND responder_id = ?) or (initiator_id = ? AND responder_id = ?)", current_user.id, other_user.id, other_user.id, current_user.id)
+    relationships.where("(initiator_id = ? AND responder_id = ?) or (initiator_id = ? AND responder_id = ?)", current_user.id, other_user.id, other_user.id, current_user.id)
+    #relationships.where("(initiator_id = ? AND responder_id = ?)", current_user.id, other_user.id)
   end
 
   def communicate!(other_user)
