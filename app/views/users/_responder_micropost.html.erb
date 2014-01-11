@@ -1,18 +1,22 @@
 <% unless current_user?(@user) %>
 <%# topic = Micropost.where("(initiator = (?) OR responder = (?)) and (topic != (?) OR topic != (?))", current_user.id, @user.id, nil, "").first.topic %> 
-<% if false %>
-<%= current_user.id %>
-<%= @user.id %>
-<p></p>
-	<% if current_user.communicating?(current_user, @user).count == 0 %>
+<%# if false %>
 	<%= current_user.id %>
-	<% else %>
 	<%= @user.id %>
-	<% end %>
-<% end %>
+	<%= current_user.communicating?(current_user, @user).any?%>
+	<%= @user.communicating?(current_user, @user).any? %>
+	<%= current_user.first_communicating?(@user) %>
+	<%= @user.first_communicating?(current_user) %>
+	<p></p>
+		<% if (current_user.communicating?(current_user, @user).any? or @user.communicating?(current_user, @user).any?) %>
+		<%= current_user.id %>
+		<% else %>
+		<%= @user.id %>
+		<% end %>
+<%# end %>
 
 <%# if false %>	
-	<% if current_user.communicating?(current_user, @user).any? %>
+	<% if (current_user.communicating?(current_user, @user).any? or @user.communicating?(current_user, @user).any?) %>
 		<%= form_for(current_user.microposts.build(user_id: current_user.id, initiator: current_user.id, responder: @user.id, topic:  Micropost.where("(initiator = (?) and responder = (?)) or (initiator = (?) OR responder = (?)) and (topic != (?) OR topic != (?))", current_user.id, @user.id, @user.id, current_user.id, nil, "").first.topic)) do |f| %>
 
 			<div><%= f.hidden_field :user_id %></div>
@@ -20,30 +24,14 @@
 			<div><%= f.hidden_field :initiator %></div>
 			<div><%= f.hidden_field :topic %></div>
 
-			<% if false %>
-				<% if current_user.communicating?(current_user, @user) %>
-					<aside>
-						<div class="good-border">
-					    <%#= f.text_area :topic, :input_html => { :topic => 'Micropost.where("(initiator = (?) OR responder = (?)) and (topic != (?) OR topic != (?))", current_user.id, @user.id, nil, "").first.topic' } %>
-					    <% f.text_area :topic, :value => Micropost.where("(initiator = (?) OR responder = (?)) and (topic != (?) OR topic != (?))", current_user.id, @user.id, nil, "").first.topic %>
-					  </div>
-			 		</aside>			
-				<% else %>
-					<aside>
-						<div class="good-border">
-					    <%= f.text_area :topic, placeholder: "Put the topic of your conversation here...", :required => true %>
-					  </div>
-			 		</aside>
-			  <% end %>
-		  <% end %>
 		  <aside>
 			  <div class="good-border">
 			    <%= f.text_area :content, placeholder: "Write to this user...", class: "big-text-field", :required => true %>
 			  </div>
-		  </aside>
-
+			</aside>
 		  <%= f.submit "Let us talk", class: "btn btn-large btn-primary" %>
 		<% end %>
+
 	<% else %>
 		<%= form_for(current_user.microposts.build(user_id: current_user.id, initiator: current_user.id, responder: @user.id)) do |f| %>
 			<div><%= f.hidden_field :user_id %></div>
@@ -57,11 +45,11 @@
 				  </div>
 		 		</aside>
 
-		  <aside>
-			  <div class="good-border">
-			    <%= f.text_area :content, placeholder: "Write to this user...", class: "big-text-field", :required => true %>
-			  </div>
-		  </aside>
+			  <aside>
+				  <div class="good-border">
+				    <%= f.text_area :content, placeholder: "Write to this user...", class: "big-text-field", :required => true %>
+				  </div>
+			  </aside>
 
 		  <%= f.submit "Let us talk", class: "btn btn-large btn-primary" %>
 		<% end %>

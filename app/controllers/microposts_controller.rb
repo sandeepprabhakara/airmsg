@@ -44,23 +44,27 @@ class MicropostsController < ApplicationController
   # POST /microposts.json
   def create
     @micropost = Micropost.new(micropost_params)
-
+    #debugger
     respond_to do |format|
       if @micropost.save
-        format.html { redirect_to root_url, notice: 'Conversation was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Conversation was successfully created!' }
+        @micropost.responder.inspect
         format.json { render action: 'show', status: :created, location: @micropost }
         #flash[:success] = "Micropost created!"
         #redirect_to root_url
       
-      #if (@micropost.topic == nil or @micropost.topic == "")
-      #else
-        #current_user.communicate!(User.find_by_id(@micropost.responder))
-      #end
-      if current_user.communicating?(current_user, User.find_by_id(@micropost.responder))
-      else
-        current_user.communicate!(User.find_by_id(@micropost.responder))
-        Pin.create(:description => @micropost.topic, :responder_id => @micropost.responder, :initiator_id => @micropost.initiator)
-      end
+        #if (@micropost.topic == nil or @micropost.topic == "")
+        #else
+          #current_user.communicate!(User.find_by_id(@micropost.responder))
+        #end
+        #other_user = User.find_by_id(@micropost.responder)
+        if current_user.first_communicating?(User.find_by_id(@micropost.responder))
+        #if current_user.communicating?(current_user, User.find_by_id(@micropost.responder))
+        #if (current_user.communicating?(current_user, User.find_by_id(@micropost.responder)) or User.find_by_id(@micropost.responder).communicating?(current_user, User.find_by_id(@micropost.responder)))
+        else
+          current_user.communicate!(User.find_by_id(@micropost.responder))
+          Pin.create(:description => @micropost.topic, :responder_id => @micropost.responder, :initiator_id => @micropost.initiator)
+        end
 
       else
         format.html { render action: root_url }
