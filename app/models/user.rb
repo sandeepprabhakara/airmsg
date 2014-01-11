@@ -36,11 +36,11 @@ class User < ActiveRecord::Base
     Micropost.where("(initiator = (?) and responder = (?)) or (initiator = (?) and responder = (?))", current_user, other_user, other_user, current_user)
   end
 
-  def conversation_list(initiator, responder)
+  def conversation_list(first_user, second_user)
     #Micropost.from_certain_user(self).order("created_at DESC")
     #Micropost.from_certain_user(self)
     #Micropost.where("user_id = ? OR user_id = ?", first_user.id, second_user.id)
-    Micropost.where("initiator = ? AND responder = ?", initiator, responder)
+    Micropost.where("(initiator = ? AND responder = ?) or (initiator = ? AND responder = ?)", first_user, second_user, second_user, first_user)
   end
 
   def communicating?(current_user, other_user)

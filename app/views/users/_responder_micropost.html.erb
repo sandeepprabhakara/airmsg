@@ -1,6 +1,6 @@
 <% unless current_user?(@user) %>
 <%# topic = Micropost.where("(initiator = (?) OR responder = (?)) and (topic != (?) OR topic != (?))", current_user.id, @user.id, nil, "").first.topic %> 
-<%# if false %>
+<% if false %>
 	<%= current_user.id %>
 	<%= @user.id %>
 	<%= current_user.communicating?(current_user, @user).any?%>
@@ -13,7 +13,7 @@
 		<% else %>
 		<%= @user.id %>
 		<% end %>
-<%# end %>
+<% end %>
 
 <%# if false %>	
 	<% if (current_user.communicating?(current_user, @user).any? or @user.communicating?(current_user, @user).any?) %>
