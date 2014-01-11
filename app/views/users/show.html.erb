@@ -47,7 +47,9 @@
 				</section>
 			</aside>
 			<%= render 'update_user_details', :users => current_user %>
-		<% elsif @conversation_items.any? and current_user != @user %>
+		<%# elsif @conversation_items.any? and current_user != @user  %>
+		<% elsif @conversation_items.any? and ((current_user.communicating?(current_user, @user).any? or @user.communicating?(current_user, @user).any?)) %>
+
 		<%#= @conversation_items.count %>
 			<aside>
 				<section>

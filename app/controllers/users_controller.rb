@@ -25,7 +25,14 @@ class UsersController < ApplicationController
   def show
     #@conversation_items = current_user.conversation.paginate(page: params[:page])
     #@conversation_items = current_user.conversation
-    @conversation_items = @user.conversation(current_user).paginate(page: params[:page], :per_page => 10)
+    #@conversation_items = @user.conversation(current_user).paginate(page: params[:page], :per_page => 10)
+
+    #this if-else is so that when a user is not communicating with another one then the conversation items should not show anything
+    if ((current_user.communicating?(current_user, @user).any? or @user.communicating?(current_user, @user).any?))
+      @conversation_items = @user.conversation(current_user).paginate(page: params[:page], :per_page => 10)
+    else
+      @conversation_items = @current_user.conversation(current_user).paginate(page: params[:page], :per_page => 10)
+    end
     #@conversation_items = conversation(current_user, @user)
   end
 

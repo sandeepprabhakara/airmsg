@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable,
-         :invitation_limit => 1
+         :invitation_limit => 5
 
   has_many :pins
   has_many :microposts, dependent: :destroy
@@ -62,7 +62,13 @@ class User < ActiveRecord::Base
   end
 
 	def uncommunicate!(other_user)
-    relationships.find_by(responder_id: other_user.id).destroy!
+    #relationships.find_by(responder_id: other_user.id).destroy!
+    if relationships.find_by(responder_id: other_user.id)
+      relationships.find_by(responder_id: other_user.id).destroy!
+    else
+      relationships.find_by(responder_id: current_user.id).destroy!
+    end
+
   end
 
   def eavesdropping?(current_user, first_user, second_user)
