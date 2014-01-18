@@ -58,7 +58,7 @@ class MicropostsController < ApplicationController
           #current_user.communicate!(User.find_by_id(@micropost.responder))
         #end
         #other_user = User.find_by_id(@micropost.responder)
-        if current_user.first_communicating?(User.find_by_id(@micropost.responder))
+        if (current_user.first_communicating?(User.find_by_id(@micropost.responder)) or User.find_by_id(@micropost.responder).first_communicating?(current_user))
         #if current_user.communicating?(current_user, User.find_by_id(@micropost.responder))
         #if (current_user.communicating?(current_user, User.find_by_id(@micropost.responder)) or User.find_by_id(@micropost.responder).communicating?(current_user, User.find_by_id(@micropost.responder)))
         else

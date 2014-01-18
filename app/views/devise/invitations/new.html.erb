@@ -2,6 +2,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h2><%= t "devise.invitations.new.header" %></h2>
+		<h5><%=@user.invitation_limit - @user.invitations.count%> Invitations left</h5>
 	</div>
 
 	<div class="panel-body">
@@ -14,7 +15,6 @@
 				  <%= f.text_field field, class: "form-control" %></p>
 				<% end -%>
 			</div>
-
 		  <p><%#= f.submit t("devise.invitations.new.submit_button") %></p>
 		  <p><%= f.submit t("devise.invitations.new.submit_button"), class: "btn btn-primary" %></p>
 

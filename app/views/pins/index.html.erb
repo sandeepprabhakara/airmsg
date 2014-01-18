@@ -5,7 +5,7 @@
 <div id="pins" class="transitions-enabled">
   <% @pins.each do |pin| %>
     <!--<div class="box panel panel-default"> -->
-    <div class=" pin-box panel panel-default center">
+    <div class=" box panel panel-default center">
       <div class="gravatar-wide good-sharpborder">
         <%= image_tag(pin.initiator.image.url(:thumb)) %><p></p>
         <%= link_to pin.initiator.name,pin.initiator %>

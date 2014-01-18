@@ -13,10 +13,13 @@ class User < ActiveRecord::Base
   has_many :reverse_relationships, foreign_key: "responder_id", class_name: "Relationship", dependent: :destroy
   has_many :initiators, through: :reverse_relationships, source: :initiator
   has_many :eavesdrops
+  has_many :invitations, :class_name => self.to_s, :as => :invited_by
 
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "50x50>", :profile => "150x150>" }, :default_url => 'default_gravatar_:style.jpg'
 
   validates :name, presence: true
+  validates :description, length: { maximum: 300 }
+  validates :name, length: { maximum: 75 }
 
   searchable do
     text :name, :description, :location

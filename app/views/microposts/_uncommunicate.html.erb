@@ -27,7 +27,7 @@
 <% end %>
 
 <% if @user.relationships.find_by(responder_id: current_user) %>
-<%= current_user.id %>
+<% current_user.id %>
 	<%= form_for(@user.relationships.find_by(responder_id: current_user, initiator_id: @user), html: { method: :delete }) do |f| %>
 	<div><% f.hidden_field :responder_id %></div>
 	<div><% f.hidden_field :initiator_id %></div>
@@ -35,7 +35,7 @@
 	<% end %>
 
 <% elsif current_user.relationships.find_by(responder_id: @user) %>
-<%= @user.id %>
+<% @user.id %>
   <%= form_for(current_user.relationships.find_by(responder_id: @user, initiator_id: current_user), html: { method: :delete }) do |f| %>
   <div><% f.hidden_field :responder_id %></div>
   <div><% f.hidden_field :initiator_id %></div>
