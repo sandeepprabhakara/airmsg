@@ -6,12 +6,14 @@
   <% @pins.each do |pin| %>
     <!--<div class="box panel panel-default"> -->
     <div class=" box panel panel-default center">
-      <div class="gravatar-wide good-sharpborder">
+      <!-- <div class="gravatar-wide good-sharpborder"> -->
+      <div class="good-sharpborder">
         <%= image_tag(pin.initiator.image.url(:thumb)) %><p></p>
         <%= link_to pin.initiator.name,pin.initiator %>
       </div>
       <p></p>
-      <div class="gravatar-wide good-sharpborder">
+      <!-- <div class="gravatar-wide good-sharpborder"> -->
+      <div class="good-sharpborder">
         <%= image_tag(pin.responder.image.url(:thumb)) %><p></p>
         <%= link_to pin.responder.name,pin.responder %>
       </div>
