@@ -30,8 +30,6 @@ Pinteresting::Application.configure do
   # Required for Heroku
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
-  # Required to ensure that rails is not working from public/assets during production
-  config.serve_static_assets = false
 
   # Required to send emails
   config.action_mailer.delivery_method = :smtp
