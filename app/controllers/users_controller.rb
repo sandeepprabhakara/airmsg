@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def about
   end
 
+
 	def index
     #@users = User.all
     #@users = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
@@ -46,7 +47,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: 'User was successfully updated!' }
         format.json { head :no_content }
       else
         format.html { render action: 'index' }
@@ -81,7 +82,7 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       #params.require(:pin).permit(:description, :image)
-      params.require(:user).permit(:image, :password, :password_confirmation, :description, :location)
+      params.require(:user).permit(:name, :image, :password, :password_confirmation, :description, :location)
     end
     
 end

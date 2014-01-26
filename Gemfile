@@ -22,6 +22,7 @@ gem 'faker'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'devise_invitable', '~> 1.3.2'
+gem 'protected_attributes'
 
 
 group :development, :test do
