@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   validates :description, length: { maximum: 300 }
   validates :name, length: { maximum: 75 }
 
-
+  attr_accessible :name, :image, :password, :password_confirmation, :description, :location, :email
 
   searchable do
     text :name, :description, :location

@@ -83,6 +83,7 @@ class UsersController < ApplicationController
     def user_params
       #params.require(:pin).permit(:description, :image)
       params.require(:user).permit(:name, :image, :password, :password_confirmation, :description, :location)
+      #params.require(:user).permit(:image, :password, :password_confirmation, :description, :location)
     end
     
 end
