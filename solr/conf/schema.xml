@@ -54,19 +54,82 @@
     -->
     <!-- *** This fieldType is used by Sunspot! *** -->
     <fieldType name="string" class="solr.StrField" omitNorms="true"/>
-    <!-- *** This fieldType is used by Sunspot! *** -->
-    <fieldType name="tdouble" class="solr.TrieDoubleField" omitNorms="true"/>
-    <!-- *** This fieldType is used by Sunspot! *** -->
-    <fieldType name="rand" class="solr.RandomSortField" omitNorms="true"/>
-    <!-- *** This fieldType is used by Sunspot! *** -->
-    <fieldType name="text" class="solr.TextField" omitNorms="false">
+    <!-- *** This fieldType is used by Sunspot! ***
       <analyzer>
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.StandardFilterFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.PorterStemFilterFactory"/>
+        <filter class="solr.PhoneticFilterFactory" encoder="DoubleMetaphone" inject="true"/>
+        <filter class="solr.ShingleFilterFactory" maxShingleSize="2" outputUnigrams="true"/>
+        <filter class="solr.ClassicFilterFactory"/>
+        <filter class="solr.StopFilterFactory"/>
+      </analyzer>
+    </fieldType> -->
+    <fieldType name="tdouble" class="solr.TrieDoubleField" omitNorms="true"/>
+    <!-- *** This fieldType is used by Sunspot! *** -->
+    <fieldType name="rand" class="solr.RandomSortField" omitNorms="true"/>
+    <!-- *** This fieldType is used by Sunspot! *** -->
+    <fieldType name="text" class="solr.TextField" omitNorms="false" autoGeneratePhraseQueries="true">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StandardFilterFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.EdgeNGramFilterFactory" minGramSize="2" maxGramSize="15"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StandardFilterFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.PorterStemFilterFactory"/>
+        <filter class="solr.PhoneticFilterFactory" encoder="DoubleMetaphone" inject="true"/>
+      </analyzer>
+
+      <!-- This was the original code
+      <analyzer>
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StandardFilterFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.PorterStemFilterFactory"/>
+        <filter class="solr.PhoneticFilterFactory" encoder="DoubleMetaphone" inject="true"/>
+      </analyzer> -->
+    </fieldType>
+    <!-- I added this -->
+    <fieldType name="text_exact_fuzzy" class="solr.TextField" omitNorms="false">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StandardFilterFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StandardFilterFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
     </fieldType>
+
+
+    <fieldType name="new_text" class="solr.TextField" omitNorms="false">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StandardFilterFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.EdgeNGramFilterFactory" minGramSize="2" maxGramSize="15"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StandardFilterFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.PorterStemFilterFactory"/>
+        <filter class="solr.PhoneticFilterFactory" encoder="DoubleMetaphone" inject="true"/>
+      </analyzer>
+    </fieldType>
+    <!-- end of my customization -->
+
+
+
+
+
     <!-- *** This fieldType is used by Sunspot! *** -->
     <fieldType name="boolean" class="solr.BoolField" omitNorms="true"/>
     <!-- *** This fieldType is used by Sunspot! *** -->
