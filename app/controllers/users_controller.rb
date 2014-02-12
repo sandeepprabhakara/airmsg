@@ -14,13 +14,13 @@ class UsersController < ApplicationController
     #@users = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
     #@users = User.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
     #@users = User.all.order("created_at DESC")
-
+    @featured_users = User.where("featured = ?",1)
     @search = User.search do
       fulltext params[:search]
       paginate page: 1, per_page: 1000
     end
     @users = @search.results
-    @featured_users = User.where("featured = ?",1)
+    
   end
 
   def show

@@ -17,7 +17,7 @@
 						<p>Lives in <font color="#c0392b"><%= @user.location %></font></p>
 					<% end %>
 					<p>Talk to me about... <font color="#c0392b"><em><%= @user.description %></em></font></p>
-					<p><span class="badge"><%= [7 - Relationship.where("responder_id = ?", @user.id).count,0].max %></span> spots open</p>
+					<p><span class="badge"><%= [25 - Relationship.where("responder_id = ?", @user.id).count,0].max %></span> spots open</p>
 						<% if false %>
 							<% if @user == current_user %>
 								<%= link_to edit_user_path(@pin) do %>
@@ -48,7 +48,7 @@
 			</aside>
 			<%= render 'update_user_details', :users => current_user %>
 		<%# elsif @conversation_items.any? and current_user != @user  %>
-		<% elsif Relationship.where("responder_id = ?", @user.id).count > 6 %>
+		<% elsif Relationship.where("responder_id = ?", @user.id).count > 25 %>
 			<aside>
 				<section>
 		    <h1><%= @user.name %> currently has no bandwidth. Check back soon to see if any openings show up</h1>
