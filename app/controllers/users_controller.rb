@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       paginate page: 1, per_page: 1000
     end
     @users = @search.results
-
+    @featured_users = User.where("featured = ?",1)
   end
 
   def show

@@ -5,6 +5,13 @@ Pinteresting::Application.routes.draw do
 
   resources :pins
 
+  #resources :widgets
+
+  #map.connect '/widgets/:action/:api_key', :controller => 'widgets', :api_key => /.*/
+  #map.connect '/widgets/:action', :controller => 'widgets', :action => 'ilove'
+  #map.connect '/widgets', :controller => 'widgets'
+  #map.connect '/widgets', :controller => 'widgets', :action => 'show'
+
   #line below was written when I though I needed to add a custom registrations. but I updated Application controller instead and it works
   #devise_for :users, :controllers => { :registrations => "users/registrations" }
   devise_for :users
@@ -29,6 +36,8 @@ Pinteresting::Application.routes.draw do
   root "microposts#index"
   get "about" => "pages#about"
   get "conversations" => "pins#index"
+  get "widgets" => "widgets#ilove"
+
   #get "users/:id/whoresponders" => "microposts#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
