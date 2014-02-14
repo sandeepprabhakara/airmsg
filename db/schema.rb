@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140212031532) do
+ActiveRecord::Schema.define(version: 20140214030632) do
 
   create_table "eavesdrops", force: true do |t|
     t.integer  "user_id"
@@ -22,17 +22,17 @@ ActiveRecord::Schema.define(version: 20140212031532) do
   end
 
   create_table "microposts", force: true do |t|
-    t.string   "content"
+    t.text     "content",    limit: 1500
     t.integer  "user_id"
     t.integer  "initiator"
     t.integer  "responder"
-    t.string   "topic"
+    t.text     "topic",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "pins", force: true do |t|
-    t.string   "description"
+    t.text     "description",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
