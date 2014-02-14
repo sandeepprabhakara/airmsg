@@ -27,9 +27,10 @@
 					<% end %> 
 				</div>
 
-				<% if Relationship.where("responder_id = ?", @user.id).count < 7 %>
+				<% if Relationship.where("responder_id = ?", @user.id).count < 25 %>
 					<div class="right-gravatar">
 				  	<%= render 'responder_micropost', :microposts => @micropost %>
+				  	<%#= @user.id %>
 					</div>
 				<% end %>
 	</div>

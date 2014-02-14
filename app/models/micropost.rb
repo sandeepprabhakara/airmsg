@@ -8,6 +8,7 @@ class Micropost < ActiveRecord::Base
 	validates :content, length: { maximum: 1000 }
 	#validates :user_id, presence: true
 
+  attr_accessible :content, :user_id, :initiator, :responder, :topic
 
 	def self.from_users_responded_by(user)
     #responder_user_ids = user.responder_user_ids

@@ -9,7 +9,7 @@ class Pin < ActiveRecord::Base
 
 	#validates :image, presence: true
 	validates :description, presence: true
-
+	attr_accessible :description, :user_id, :initiator_id, :responder_id
 	searchable do
 		text :description
 		# :message1, :message2, :message3, :message4, :message5, :message6

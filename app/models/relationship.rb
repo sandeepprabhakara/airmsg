@@ -6,4 +6,6 @@ class Relationship < ActiveRecord::Base
 	belongs_to :users
 	validates :initiator_id, presence: true
 	validates :responder_id, presence: true
+
+	attr_accessible :initiator_id, :responder_id
 end
