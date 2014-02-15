@@ -5,7 +5,7 @@ class Micropost < ActiveRecord::Base
   #belongs_to :responder, class_name: "User"
 
 	default_scope -> { order('created_at DESC') }
-	validates :content, length: { maximum: 1000 }
+	validates :content, length: { maximum: 1500 }
 	#validates :user_id, presence: true
 
   attr_accessible :content, :user_id, :initiator, :responder, :topic
