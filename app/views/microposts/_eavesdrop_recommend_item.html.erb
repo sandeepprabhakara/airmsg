@@ -1,4 +1,4 @@
-<li id="<%= eavesdrop_recommend_item.id %>">
+<li id="<%#= eavesdrop_recommend_item.id %>">
   <%#= link_to gravatar_for(feed_item.user), feed_item.user %>
   <%#= eavesdrop_item.id %>
   <%# @pins = Pin.where("initiator_id = (?) AND responder_id = (?)", eavesdrop_item.initiator_id, eavesdrop_item.responder_id) %>
@@ -8,6 +8,9 @@
  	  <span class="content">
 	    <%= link_to pin.description, pin %>
   	</span>
+    <span class="timestamp">
+      Updated <%= time_ago_in_words(pin.updated_at) %> ago.
+    </span>
     <!--
 	  <span class="timestamp">
 	    Updated <%= time_ago_in_words(pin.updated_at) %> ago.

@@ -1,10 +1,11 @@
 <% if @eavesdrop_recommend_items.any? %>
-<%#= @eavesdrop_items.count %>
+<%#= @eavesdrop_recommend_items.count %>
 		<section>
       <h1>Conversations recommended to eavesdrop</h1> 
     </section>
   <ol class="microposts">
-    <%= render partial: 'eavesdrop_recommend_item', collection: @eavesdrop_recommend_items %>
+    <%#= render partial: 'eavesdrop_recommend_item', collection: @eavesdrop_recommend_items %>
+    <%= render partial: 'eavesdrop_recommend_item' %>
   </ol>
   <%#= will_paginate @eavesdrop_items, renderer: BootstrapPagination::Rails %>
 <% end %>
