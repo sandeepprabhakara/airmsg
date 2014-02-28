@@ -9,7 +9,8 @@
 	    <%= link_to pin.description, pin %>
   	</span>
     <span class="timestamp">
-      Updated <%= time_ago_in_words(pin.updated_at) %> ago.
+      <% if false %> Updated <%= time_ago_in_words(pin.updated_at) %> ago. <% end %>
+      With <%= User.find(pin.responder_id).name %>
     </span>
     <!--
 	  <span class="timestamp">
