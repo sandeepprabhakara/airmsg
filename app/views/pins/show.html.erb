@@ -1,4 +1,9 @@
-<%= link_to 'Eavesdrop on other conversations', pins_path %>
+<% if user_signed_in? %>
+	<%= link_to 'Eavesdrop on other conversations', pins_path %>
+<% else %>
+	<%= link_to 'Check out other conversations like this by signing up. Click here', root_path %>
+<% end %>
+<%#= link_to 'Eavesdrop on other conversations', pins_path %>
 <%#= @pin.responder.name %>
 
 <div class="row">
@@ -6,13 +11,20 @@
 		
 		<div class="center col-md-6">
 			<%= image_tag @pin.initiator.image.url(:profile) %>	
-
+		<% if user_signed_in? %>
 			<h3><%= link_to @pin.initiator.name, @pin.initiator %></h3>
+		<% else %>
+			<h3><%= link_to @pin.initiator.name, root_path %></h3>
+		<% end %>
 		</div>
 		<div class="center col-md-6">
 			<%= image_tag @pin.responder.image.url(:profile) %>	
 
+		<% if user_signed_in? %>
 			<h3><%= link_to @pin.responder.name, @pin.responder %></h3>
+		<% else %>
+			<h3><%= link_to @pin.responder.name, root_path %></h3>
+		<% end %>
 			</div>
 	</div>
 </div>
