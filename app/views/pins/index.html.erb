@@ -1,6 +1,7 @@
 <%= render 'pages/home' unless user_signed_in? %>
-<%= render 'search' %><p></p>
-
+<% if user_signed_in? %>
+  <%= render 'search' %><p></p>
+<% end %>
 
 <div id="pins" class="transitions-enabled">
   <% @pins.each do |pin| %>
@@ -19,7 +20,7 @@
           <p><%= pin.message6 %></p>
         <% end %>
         <% if false %> <p><strong><%= pin.user.name if pin.user %></strong></p> <% end %>
-        <% if pin.user == current_user %>
+        <% if current_user && (pin.user == current_user) %>
           <div class="actions">
             <%= link_to edit_pin_path(pin) do %>
               <span class="glyphicon glyphicon-edit"></span>Edit
