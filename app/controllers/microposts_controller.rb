@@ -18,7 +18,7 @@ class MicropostsController < ApplicationController
       @eavesdrop_recommend_items = current_user.eaveslist_recommend
       #@pins = current_user.eaveslist(@eavesdrop_items)
     end
-    @pins = Pin.all
+    @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 25)
   end
 
 
