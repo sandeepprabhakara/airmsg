@@ -47,7 +47,7 @@ class MicropostsController < ApplicationController
     #debugger
     respond_to do |format|
       if @micropost.save
-        format.html { redirect_to root_url, notice: 'Conversation was successfully created!' }
+        format.html { redirect_to root_url, notice: 'Thanks for posting! You will be notified as soon as you receive a response' }
         @micropost.responder.inspect
         format.json { render action: 'show', status: :created, location: @micropost }
         #flash[:success] = "Micropost created!"
