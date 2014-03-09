@@ -11,25 +11,32 @@
 		
 		<div class="center col-md-6">
 			<%= image_tag @pin.initiator.image.url(:profile) %>	
-		<% if user_signed_in? %>
-			<h3><%= link_to @pin.initiator.name, @pin.initiator %></h3>
-		<% else %>
-			<h3><%= link_to @pin.initiator.name, root_path %></h3>
-		<% end %>
+			<% if user_signed_in? %>
+				<h3><%= link_to @pin.initiator.name, @pin.initiator %></h3>
+			<% else %>
+				<h3><%= link_to @pin.initiator.name, root_path %></h3>
+			<% end %>
 		</div>
 		<div class="center col-md-6">
 			<%= image_tag @pin.responder.image.url(:profile) %>	
-
-		<% if user_signed_in? %>
-			<h3><%= link_to @pin.responder.name, @pin.responder %></h3>
-		<% else %>
-			<h3><%= link_to @pin.responder.name, root_path %></h3>
-		<% end %>
-			</div>
+			<% if user_signed_in? %>
+				<h3><%= link_to @pin.responder.name, @pin.responder %></h3>
+			<% else %>
+				<h3><%= link_to @pin.responder.name, root_path %></h3>
+			<% end %>
+		</div>
 	</div>
 </div>
 <p></p>
-
+<% if false %>
+<div class="row">
+	<div class="col-md-offset-2 col-md-8 light-gray-background">
+		<h4> If you think this conversation is helpful, please share it:<%= social_share_button_tag(@pin.description) %>
+		</h4>		
+	</div>
+</div>
+<p></p>
+<% end %>
 <% if false %>
 	<div class="row">
 		<div class="col-md-offset-2 col-md-8">
@@ -74,6 +81,8 @@
 		    <h1 class="center">Conversation between <%= @pin.responder.name %> and <%= @pin.initiator.name %> on <font color="#c0392b"><%=@pin.description %></font>
 		    <p></p> 
 		    <%= render 'pins/eavesdrop_form' %>
+		    <p></p>
+		    <%= social_share_button_tag(@pin.description) %> 
 		    </h1>
 	    </section>
 	  </aside>

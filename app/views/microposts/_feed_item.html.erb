@@ -14,14 +14,17 @@
     <% if current_user.id == feed_item.responder %>
     <aside> 
       <section> 
-        <h5> with <%= link_to User.find_by_id(feed_item.initiator).name, User.find_by_id(feed_item.initiator) %></h5>   
+        <!-- <h5> with <%= link_to User.find_by_id(feed_item.initiator).name, User.find_by_id(feed_item.initiator) %></h5> -->
+
+        <h5> with <%= link_to User.find_by_id(feed_item.initiator).name, Pin.where(:initiator_id => feed_item.initiator).find_by_responder_id(feed_item.responder) %></h5>
       </section>
     </aside>      
     <%#= feed_item.content %>
     <% elsif current_user.id == feed_item.initiator %>
     <aside> 
       <section> 
-        <h5> with <%= link_to User.find_by_id(feed_item.responder).name, User.find_by_id(feed_item.responder) %></h5>   
+        <!-- <h5> with <%= link_to User.find_by_id(feed_item.responder).name, User.find_by_id(feed_item.responder) %></h5> -->
+        <h5> with <%= link_to User.find_by_id(feed_item.responder).name, Pin.where(:initiator_id => feed_item.initiator).find_by_responder_id(feed_item.responder) %></h5>   
       </section>
     </aside>
 
