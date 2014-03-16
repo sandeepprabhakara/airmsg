@@ -63,7 +63,7 @@ class MicropostsController < ApplicationController
         #if (current_user.communicating?(current_user, User.find_by_id(@micropost.responder)) or User.find_by_id(@micropost.responder).communicating?(current_user, User.find_by_id(@micropost.responder)))
         else
           current_user.communicate!(User.find_by_id(@micropost.responder))
-          Pin.create(:description => @micropost.topic, :responder_id => @micropost.responder, :initiator_id => @micropost.initiator)
+          Pin.create(:description => @micropost.topic, :responder_id => @micropost.responder, :initiator_id => @micropost.initiator, :category => @micropost.category)
         end
 
       else

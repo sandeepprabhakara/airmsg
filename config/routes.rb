@@ -37,6 +37,10 @@ Pinteresting::Application.routes.draw do
   get "about" => "pages#about"
   get "conversations" => "pins#index"
   get "widgets" => "widgets#ilove"
+  get "users_consulting" => "users#consulting_index"
+  get "users_gradapplication" => "users#gradapplication_index"
+  get "pins_consulting" => "pins#consulting_index"
+  get "pins_gradapplication" => "pins#gradapplication_index"
 
   #get "users/:id/whoresponders" => "microposts#index"
   # The priority is based upon order of creation: first created -> highest priority.

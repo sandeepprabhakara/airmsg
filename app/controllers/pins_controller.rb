@@ -74,6 +74,14 @@ class PinsController < ApplicationController
     end
   end
 
+  def consulting_index
+    @consulting_pins = Pin.where("category = (?)",1).paginate(page: params[:page], :per_page => 30)
+  end
+
+  def gradapplication_index
+    @gradapplication_pins = Pin.where("category = (?)",2).paginate(page: params[:page], :per_page => 30)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pin

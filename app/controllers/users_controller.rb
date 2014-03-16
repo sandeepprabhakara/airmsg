@@ -15,6 +15,8 @@ class UsersController < ApplicationController
     #@users = User.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
     #@users = User.all.order("created_at DESC")
     @featured_users = User.where("featured = ?",1)
+    @consulting_users = User.where("featured = (?) AND category = (?)",1,1)
+    @gradapplication_users = User.where("featured = (?) AND category = (?)",1,2)
     @search = User.search do
       fulltext params[:search]
       paginate page: 1, per_page: 1000
@@ -66,6 +68,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def consulting_index
+    @consulting_users = User.where("featured = (?) AND category = (?)",1,1)
+  end
+
+  def gradapplication_index
+    @gradapplication_users = User.where("featured = (?) AND category = (?)",1,2)
+  end
 
  	private
     # Use callbacks to share common setup or constraints between actions.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228163401) do
+ActiveRecord::Schema.define(version: 20140310003204) do
 
   create_table "eavesdrops", force: true do |t|
     t.integer  "user_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20140228163401) do
     t.text     "topic",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "category"
   end
 
   create_table "pins", force: true do |t|
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140228163401) do
     t.integer  "initiator_id"
     t.integer  "responder_id"
     t.integer  "recommend"
+    t.integer  "category"
   end
 
   add_index "pins", ["user_id"], name: "index_pins_on_user_id"
@@ -95,6 +97,7 @@ ActiveRecord::Schema.define(version: 20140228163401) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.integer  "featured"
+    t.integer  "category"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

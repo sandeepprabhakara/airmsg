@@ -17,12 +17,13 @@
 
 <%# if false %>	
 	<% if (current_user.communicating?(current_user, @user).any? or @user.communicating?(current_user, @user).any?) %>
-		<%= form_for(current_user.microposts.build(user_id: current_user.id, initiator: current_user.id, responder: @user.id, topic:  Micropost.where("(initiator = (?) and responder = (?)) or (initiator = (?) OR responder = (?)) and (topic != (?) OR topic != (?))", current_user.id, @user.id, @user.id, current_user.id, nil, "").first.topic)) do |f| %>
+		<%= form_for(current_user.microposts.build(user_id: current_user.id, initiator: current_user.id, responder: @user.id, category: current_user.category, topic:  Micropost.where("(initiator = (?) and responder = (?)) or (initiator = (?) OR responder = (?)) and (topic != (?) OR topic != (?))", current_user.id, @user.id, @user.id, current_user.id, nil, "").first.topic)) do |f| %>
 
 			<div><%= f.hidden_field :user_id %></div>
 			<div><%= f.hidden_field :responder %></div>
 			<div><%= f.hidden_field :initiator %></div>
 			<div><%= f.hidden_field :topic %></div>
+			<div><%= f.hidden_field :category %></div>
 
 		  <aside>
 			  <div class="good-border">
@@ -34,11 +35,11 @@
 		<% end %>
 
 	<% else %>
-		<%= form_for(current_user.microposts.build(user_id: current_user.id, initiator: current_user.id, responder: @user.id)) do |f| %>
+		<%= form_for(current_user.microposts.build(user_id: current_user.id, initiator: current_user.id, category: current_user.category, responder: @user.id)) do |f| %>
 			<div><%= f.hidden_field :user_id %></div>
 			<div><%= f.hidden_field :responder %></div>
 			<div><%= f.hidden_field :initiator %></div>
-
+			<div><%= f.hidden_field :category %></div>
 		
 				<aside>
 					<div class="good-border">

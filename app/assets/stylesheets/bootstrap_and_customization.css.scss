@@ -67,5 +67,18 @@ $grayLight: #999;
   }
 
 
+// I pulled this from the inspect element feature to target the color that was coming when I click on the dropdown link
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+background-color: #555555;
+color: white;
+}
 
-
+.dropdown-menu > li > a {
+display: block;
+padding: 3px 20px;
+clear: both;
+font-weight: normal;
+line-height: 1.428571429;
+color: #333333;
+white-space: nowrap;
+}

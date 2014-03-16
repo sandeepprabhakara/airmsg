@@ -26,8 +26,24 @@
             <% end %> -->
           </li>
           <li><%= link_to "About Us", about_path %></li>
-          <li><%= link_to "Featured Users", "/users#index" %></li>
-          <li><%= link_to "Conversations", "/pins#index" %></li>
+          <!-- <li><%= link_to "Featured Users", "/users#index" %></li>
+          <li><%= link_to "Conversations", "/pins#index" %></li> -->
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Featured Users<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-list"><%= link_to "Consulting", users_consulting_path %></li>
+              <li><%= link_to "Graduate Application", users_gradapplication_path %></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Conversations<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-list"><%= link_to "Consulting", pins_consulting_path %></li>
+              <li><%= link_to "Graduate Application", pins_gradapplication_path %></li>
+            </ul>
+          </li>
+
           <li><%= link_to "Account Settings", edit_user_registration_path %></li>
           <li><%= link_to "Invite Friends", new_user_invitation_path %></li>
           <li><%= link_to "Log out", destroy_user_session_path, method: :delete  %></li>
