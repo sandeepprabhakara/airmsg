@@ -1,0 +1,63 @@
+<%= render 'pages/home' unless user_signed_in? %>
+<% if user_signed_in? %>
+  <%= render 'search' %><p></p>
+<% end %>
+
+<div id="pins" class="transitions-enabled">
+  <% @gradapplication_pins.each do |pin| %>
+    <!--<div class="box panel panel-default"> -->
+    <div class=" pin-box panel panel-default center">
+
+      <div class="panel-body">
+        <% if false %>  <p>Topic: <%= link_to pin.description, pin %></p> <% end %>
+        Topic: <%= link_to pin.description, pin %>
+        <% if false %>
+          <p><%= pin.message1 %></p>
+          <p><%= pin.message2 %></p>
+          <p><%= pin.message3 %></p>
+          <p><%= pin.message4 %></p>
+          <p><%= pin.message5 %></p>
+          <p><%= pin.message6 %></p>
+        <% end %>
+        <% if false %> <p><strong><%= pin.user.name if pin.user %></strong></p> <% end %>
+        <% if current_user && (pin.user == current_user) %>
+          <div class="actions">
+            <%= link_to edit_pin_path(pin) do %>
+              <span class="glyphicon glyphicon-edit"></span>Edit
+            <% end %>
+            <%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-trash"></span>Delete
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+
+      <div class="gravatar-wide good-sharpborder">
+      <% if user_signed_in? %>
+        <%= image_tag(pin.initiator.image.url(:thumb)) %><p></p>
+        <%= link_to pin.initiator.name,pin.initiator %>
+      <% else %>
+        <%= image_tag(pin.initiator.image.url(:thumb)) %><p></p>
+        <%= link_to pin.initiator.name,root_path %>
+      <% end %>
+      </div>
+
+      <div class="gravatar-wide good-sharpborder">
+      <% if user_signed_in? %> 
+        <%= image_tag(pin.responder.image.url(:thumb)) %><p></p>
+        <%= link_to pin.responder.name,pin.responder %>
+      <% else %>
+        <%= image_tag(pin.responder.image.url(:thumb)) %><p></p>
+        <%= link_to pin.responder.name,root_path %>
+      <% end %>
+      </div>
+
+      
+    </div>
+  <% end %>
+</div>
+
+<div class="center">
+  <%= will_paginate @gradapplication_pins, renderer: BootstrapPagination::Rails %>
+</div>
