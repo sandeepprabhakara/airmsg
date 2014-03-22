@@ -3,5 +3,3 @@ $(document).on 'page:change', ->
   _gaq.push ['_trackPageview']
  else if window.pageTracker?
   pageTracker._trackPageview()
-
- #= require social-share-button
