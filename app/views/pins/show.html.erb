@@ -1,3 +1,9 @@
+
+<!--
+<link rel="stylesheet" href="social-likes_classic.css">
+<script src="jquery.min.js"></script>
+<script src="social-likes.min.js"></script>
+-->
 <% if user_signed_in? %>
 	<%= link_to 'Eavesdrop on other conversations', pins_path %>
 <% else %>
@@ -82,7 +88,12 @@
 		    <p></p> 
 		    <%= render 'pins/eavesdrop_form' %>
 		    <p></p>
-		    <%= social_share_button_tag(@pin.description) %> 
+		    <%= social_share_button_tag(@pin.description) %>
+		    <div class="social-likes">
+					<div class="facebook" title="Share link on Facebook">Facebook</div>
+					<div class="twitter" title="Share link on Twitter">Twitter</div>
+					<div class="plusone" title="Share link on Google+">Google+</div>
+				</div> 
 		    </h1>
 	    </section>
 	  </aside>
