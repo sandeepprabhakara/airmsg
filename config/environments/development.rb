@@ -40,8 +40,8 @@ Pinteresting::Application.configure do
   :port => 587,
   :domain => "gmail.com",
   :authentication => :login,
-  :user_name => "sandeep.prabhakara@gmail.com",
-  :password => "smelltherock82",
+  :user_name => "1degree.co@gmail.com",
+  :password => "shruthi82",
   }
 
 
