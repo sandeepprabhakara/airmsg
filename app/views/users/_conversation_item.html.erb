@@ -9,7 +9,7 @@
 
     <%#= link_to conversation_item.user.name, conversation_item.user %>
   </span>
-  <span class="content"><%= conversation_item.content %></span>
+  <span class="content"><%= h auto_link(simple_format(conversation_item.content)) %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(conversation_item.created_at) %> ago.
   </span>

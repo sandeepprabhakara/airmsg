@@ -31,7 +31,7 @@
 
       <%#= feed_item.content %>
     <% end %>
-    <%= feed_item.content %>
+    <%= h auto_link(simple_format(feed_item.content)) %>
   </span>
 
   <span class="timestamp">

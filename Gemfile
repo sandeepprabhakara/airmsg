@@ -24,6 +24,7 @@ gem 'sunspot_solr'
 gem 'devise_invitable', '~> 1.3.2'
 gem 'protected_attributes'
 gem 'social-share-button'
+gem 'rails_autolink'
 
 
 group :development, :test do
