@@ -15,12 +15,13 @@ class User < ActiveRecord::Base
   has_many :eavesdrops
   has_many :invitations, :class_name => self.to_s, :as => :invited_by
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "50x50>", :profile => "150x150>" }, :default_url => 'default_gravatar_:style.jpg'
+  #has_attached_file :video
 
   validates :name, presence: true
   validates :description, length: { maximum: 300 }
   validates :name, length: { maximum: 75 }
 
-  attr_accessible :name, :image, :password, :password_confirmation, :description, :location, :email 
+  attr_accessible :name, :image, :password, :password_confirmation, :description, :location, :email, :follow 
 
   searchable do
     text :name, :description, :location

@@ -20,6 +20,16 @@
 	   		 	</section>
 	    	</aside>
 	    </div>
+	    <p></p>
+	    <div>
+	  		<aside>
+					<section>
+	    	<%# if current_user.follow == nil or current_user.follow == "" %>
+	    		<%= f.text_area :follow, placeholder: "Add your twitter handle, facebook page or blog here", class: "medium-text-field"  %>
+	    	<%# end %>
+	   		 	</section>
+	    	</aside>
+	    </div>
 	  </div>
 
 	  <p></p>
