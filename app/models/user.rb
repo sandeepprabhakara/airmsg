@@ -102,6 +102,9 @@ class User < ActiveRecord::Base
     #Micropost.from_users_responded_by(self).order("created_at DESC")
   end
 
+  def url_with_protocol(url)
+    /^http/.match(url) ? url : "http://#{url}"
+  end
 
 protected
   #def confirmation_required?
